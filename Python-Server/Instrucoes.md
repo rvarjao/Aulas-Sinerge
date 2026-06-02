@@ -680,7 +680,7 @@ Nesta aula, aprendemos que:
 
 
 
-# Aula 2 — Cadastrando Clientes e Produtos com Python
+# Aula 2 - Cadastrando Clientes e Produtos com Python
 
 ## Continuação da Aula 1
 
