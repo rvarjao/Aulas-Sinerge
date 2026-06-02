@@ -697,13 +697,7 @@ vendas_produtos
 
 Nesta aula, vamos começar a colocar informações no banco.
 
-Vamos criar um programa em Python que permite:
-
-* cadastrar clientes;
-* cadastrar produtos;
-* listar clientes cadastrados;
-* listar produtos cadastrados;
-* usar um menu simples no terminal.
+Também vamos melhorar a forma de configurar a conexão com o banco. Em vez de colocar host, usuário e senha diretamente no código Python, vamos usar um arquivo chamado `.env`.
 
 ---
 
@@ -715,7 +709,8 @@ Ao final desta aula, você deverá conseguir:
 * consultar dados do banco usando Python;
 * usar comandos SQL `INSERT` e `SELECT`;
 * criar um menu simples no terminal;
-* entender como o Python envia e recebe informações do banco.
+* carregar configurações de banco a partir de um arquivo `.env`;
+* entender a importância de proteger senhas e dados de conexão.
 
 ---
 
@@ -730,26 +725,263 @@ lanchonete-python
 Dentro dela, devem existir os arquivos:
 
 ```
-config.py
 main.py
 ```
 
-O arquivo `config.py` deve conter os dados de conexão com o banco:
+Agora vamos criar também:
 
 ```
-DB_CONFIG = {
-    "host": "SEU_HOST_AQUI",
-    "port": 12345,
-    "dbname": "defaultdb",
-    "user": "SEU_USUARIO_AQUI",
-    "password": "SUA_SENHA_AQUI",
-    "sslmode": "require"
-}
+.env
+.gitignore
+```
+
+A estrutura ficará assim:
+
+```
+lanchonete-python/
+    .env
+    .gitignore
+    main.py
 ```
 
 ---
 
-# 3. O que vamos fazer hoje?
+# 3. Instalando as bibliotecas necessárias
+
+Na aula anterior, usamos a biblioteca `psycopg` para conectar ao PostgreSQL.
+
+Agora vamos instalar também a biblioteca `python-dotenv`, que permite ler variáveis do arquivo `.env`.
+
+No terminal, dentro da pasta do projeto, execute:
+
+```
+pip install psycopg[binary] python-dotenv
+```
+
+---
+
+# 4. Criando o arquivo .env
+
+Crie um arquivo chamado:
+
+```
+.env
+```
+
+Dentro dele, coloque os dados de conexão com o banco.
+
+Exemplo:
+
+```
+DB_HOST=SEU_HOST_AQUI
+DB_PORT=12345
+DB_NAME=defaultdb
+DB_USER=SEU_USUARIO_AQUI
+DB_PASSWORD=SUA_SENHA_AQUI
+DB_SSLMODE=require
+```
+
+O professor irá informar os dados corretos do banco.
+
+Explicação dos campos:
+
+```
+DB_HOST      -> endereço do servidor do banco
+DB_PORT      -> porta de conexão
+DB_NAME      -> nome do banco de dados
+DB_USER      -> usuário do banco
+DB_PASSWORD  -> senha do banco
+DB_SSLMODE   -> modo de conexão segura
+```
+
+---
+
+# 5. Por que usamos arquivo .env?
+
+O arquivo `.env` serve para guardar configurações importantes do sistema, como:
+
+* endereço do banco;
+* usuário;
+* senha;
+* porta;
+* nome do banco.
+
+Essas informações não devem ficar escritas diretamente dentro do código principal do programa, porque são dados sensíveis. Se o projeto for enviado para o GitHub ou para outro repositório Git, uma senha esquecida no código pode ficar pública e permitir que outras pessoas acessem o banco de dados. Por isso, usamos o `.env` para separar configurações secretas do código e adicionamos esse arquivo ao `.gitignore`, evitando que ele seja enviado para o Git.
+
+---
+
+# 6. Criando o arquivo .gitignore
+
+Crie um arquivo chamado:
+
+```
+.gitignore
+```
+
+Dentro dele, coloque:
+
+```
+.env
+__pycache__/
+*.pyc
+```
+
+Isso indica que o Git deve ignorar esses arquivos e pastas.
+
+O mais importante aqui é:
+
+```
+.env
+```
+
+Assim, o arquivo com a senha do banco não será enviado para o repositório.
+
+---
+
+# 7. Começando o arquivo main.py
+
+Abra o arquivo `main.py`.
+
+Substitua o conteúdo dele por este código inicial:
+
+```
+import os
+import psycopg
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+
+def conectar():
+    conexao = psycopg.connect(
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT"),
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        sslmode=os.getenv("DB_SSLMODE")
+    )
+
+    return conexao
+```
+
+Esse código faz três coisas importantes:
+
+```
+import os
+```
+
+Permite ler variáveis do sistema.
+
+```
+from dotenv import load_dotenv
+```
+
+Importa a função que carrega o arquivo `.env`.
+
+```
+load_dotenv()
+```
+
+Lê o arquivo `.env` e disponibiliza as variáveis para o Python.
+
+Depois disso, podemos usar:
+
+```
+os.getenv("DB_HOST")
+os.getenv("DB_USER")
+os.getenv("DB_PASSWORD")
+```
+
+---
+
+# 8. Testando a conexão com o banco
+
+Antes de cadastrar clientes e produtos, vamos testar se a conexão está funcionando.
+
+Adicione esta função no arquivo `main.py`:
+
+```
+def testar_conexao():
+    try:
+        conexao = conectar()
+        print("Conexão realizada com sucesso!")
+        conexao.close()
+    except Exception as erro:
+        print("Erro ao conectar no banco:")
+        print(erro)
+```
+
+No final do arquivo, coloque:
+
+```
+testar_conexao()
+```
+
+O arquivo ficará assim:
+
+```
+import os
+import psycopg
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+
+def conectar():
+    conexao = psycopg.connect(
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT"),
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        sslmode=os.getenv("DB_SSLMODE")
+    )
+
+    return conexao
+
+
+def testar_conexao():
+    try:
+        conexao = conectar()
+        print("Conexão realizada com sucesso!")
+        conexao.close()
+    except Exception as erro:
+        print("Erro ao conectar no banco:")
+        print(erro)
+
+
+testar_conexao()
+```
+
+Execute no terminal:
+
+```
+python main.py
+```
+
+Resultado esperado:
+
+```
+Conexão realizada com sucesso!
+```
+
+Se aparecer erro, verifique:
+
+* se o arquivo `.env` existe;
+* se o nome das variáveis está correto;
+* se o host está correto;
+* se a porta está correta;
+* se o usuário está correto;
+* se a senha está correta;
+* se o banco está ativo;
+* se a biblioteca `python-dotenv` foi instalada.
+
+---
+
+# 9. O que vamos fazer hoje?
 
 Na aula passada, o Python criou as tabelas.
 
@@ -771,37 +1003,15 @@ Mas, em vez de escrever os dados direto no SQL, vamos pedir para o usuário digi
 
 ---
 
-# 4. Começando o arquivo main.py
+# 10. Criando a função para cadastrar clientes
 
-Abra o arquivo `main.py`.
-
-Substitua o conteúdo dele por este código inicial:
+Remova a linha final:
 
 ```
-import psycopg
-from config import DB_CONFIG
-
-
-def conectar():
-    conexao = psycopg.connect(**DB_CONFIG)
-    return conexao
+testar_conexao()
 ```
 
-Esse código importa a biblioteca do PostgreSQL e cria uma função para conectar no banco.
-
-Sempre que precisarmos acessar o banco, vamos chamar:
-
-```
-conectar()
-```
-
----
-
-# 5. Criando a função para cadastrar clientes
-
-Agora vamos criar uma função chamada `cadastrar_cliente`.
-
-Adicione este código abaixo da função `conectar`:
+Agora adicione a função `cadastrar_cliente`:
 
 ```
 def cadastrar_cliente():
@@ -824,7 +1034,7 @@ def cadastrar_cliente():
 
 ---
 
-# 6. Entendendo o cadastro de clientes
+# 11. Entendendo o cadastro de clientes
 
 Este trecho pede o nome do cliente:
 
@@ -856,6 +1066,7 @@ cursor.execute("""
 ```
 
 O `%s` é um espaço reservado.
+
 O valor digitado pelo usuário será colocado ali de forma segura.
 
 Este trecho confirma a gravação no banco:
@@ -875,44 +1086,11 @@ conexao.close()
 
 ---
 
-# 7. Testando o cadastro de clientes
+# 12. Testando o cadastro de clientes
 
 No final do arquivo `main.py`, escreva:
 
 ```
-cadastrar_cliente()
-```
-
-O arquivo ficará parecido com isto:
-
-```
-import psycopg
-from config import DB_CONFIG
-
-
-def conectar():
-    conexao = psycopg.connect(**DB_CONFIG)
-    return conexao
-
-
-def cadastrar_cliente():
-    nome = input("Digite o nome do cliente: ")
-
-    conexao = conectar()
-    cursor = conexao.cursor()
-
-    cursor.execute("""
-        INSERT INTO clientes (nome)
-        VALUES (%s);
-    """, (nome,))
-
-    conexao.commit()
-    cursor.close()
-    conexao.close()
-
-    print("Cliente cadastrado com sucesso.")
-
-
 cadastrar_cliente()
 ```
 
@@ -944,7 +1122,7 @@ Mariana
 
 ---
 
-# 8. Criando a função para listar clientes
+# 13. Criando a função para listar clientes
 
 Agora vamos criar uma função para mostrar os clientes cadastrados.
 
@@ -1002,7 +1180,7 @@ Resultado esperado:
 
 ---
 
-# 9. Entendendo a listagem de clientes
+# 14. Entendendo a listagem de clientes
 
 Este comando busca os clientes no banco:
 
@@ -1042,7 +1220,7 @@ cliente[1] -> nome
 
 ---
 
-# 10. Criando a função para cadastrar produtos
+# 15. Criando a função para cadastrar produtos
 
 Agora vamos cadastrar produtos da lanchonete.
 
@@ -1101,7 +1279,7 @@ Pão de queijo
 
 ---
 
-# 11. Atenção ao valor do produto
+# 16. Atenção ao valor do produto
 
 Quando o programa pedir o valor, use ponto em vez de vírgula.
 
@@ -1121,7 +1299,7 @@ Em Python, números decimais usam ponto.
 
 ---
 
-# 12. Criando a função para listar produtos
+# 17. Criando a função para listar produtos
 
 Agora vamos listar os produtos cadastrados.
 
@@ -1174,7 +1352,7 @@ Resultado esperado:
 
 ---
 
-# 13. Criando um menu
+# 18. Criando um menu
 
 Agora vamos criar um menu para o usuário escolher o que deseja fazer.
 
@@ -1220,17 +1398,29 @@ menu()
 
 ---
 
-# 14. Código completo da Aula 2
+# 19. Código completo da Aula 2
 
 Ao final da aula, o arquivo `main.py` deve ficar assim:
 
 ```
+import os
 import psycopg
-from config import DB_CONFIG
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 
 def conectar():
-    conexao = psycopg.connect(**DB_CONFIG)
+    conexao = psycopg.connect(
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT"),
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        sslmode=os.getenv("DB_SSLMODE")
+    )
+
     return conexao
 
 
@@ -1349,7 +1539,7 @@ menu()
 
 ---
 
-# 15. Executando o programa final
+# 20. Executando o programa final
 
 No terminal, execute:
 
@@ -1373,7 +1563,7 @@ Teste todas as opções.
 
 ---
 
-# 16. Atividade prática
+# 21. Atividade prática
 
 Cadastre pelo menos 3 clientes:
 
@@ -1397,7 +1587,7 @@ Depois, use as opções de listagem para verificar se os dados foram salvos corr
 
 ---
 
-# 17. Perguntas para responder
+# 22. Perguntas para responder
 
 Responda no caderno ou em um arquivo de texto:
 
@@ -1411,10 +1601,13 @@ Responda no caderno ou em um arquivo de texto:
 8. O que acontece quando o usuário escolhe a opção `0`?
 9. Por que o valor do produto precisa ser digitado com ponto?
 10. Qual tabela guarda os nomes dos clientes?
+11. Para que serve o arquivo `.env`?
+12. Por que o arquivo `.env` não deve ser enviado para o Git?
+13. Para que serve o arquivo `.gitignore`?
 
 ---
 
-# 18. Desafio extra
+# 23. Desafio extra
 
 Adicione uma nova opção no menu:
 
@@ -1446,7 +1639,7 @@ Ana
 
 ---
 
-# 19. Resumo da aula
+# 24. Resumo da aula
 
 Nesta aula, aprendemos que:
 
@@ -1455,6 +1648,8 @@ Nesta aula, aprendemos que:
 * o comando `SELECT` consulta informações;
 * o menu permite escolher ações no sistema;
 * clientes e produtos já podem ser cadastrados;
-* os dados continuam salvos mesmo depois que o programa fecha.
+* os dados continuam salvos mesmo depois que o programa fecha;
+* o arquivo `.env` guarda configurações sensíveis;
+* o arquivo `.gitignore` evita que arquivos importantes sejam enviados para o Git.
 
 Na próxima aula, vamos registrar uma venda escolhendo um cliente e adicionando produtos vendidos.
