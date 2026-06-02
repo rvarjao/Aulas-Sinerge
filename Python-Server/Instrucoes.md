@@ -1,8 +1,8 @@
 # Aula — Sistema de Lanchonete com Python e Banco de Dados
 
 ## Índice
-- [1. Contexto do sistema](#1-contexto-do-sistema)
-- [2. Cadastrando clientes e produtos com Python](#2-cadastrando-clientes-e-produtos-com-python)
+- [1. Contexto do sistema](#Aula-1---Contexto-do-sistema)
+- [2. Cadastrando clientes e produtos com Python](#Aula-2-—-Cadastrando-Clientes-e-Produtos-com-Python)
 
 
 ## Aula 1 - Contexto do sistema
