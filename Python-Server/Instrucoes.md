@@ -680,7 +680,7 @@ Nesta aula, aprendemos que:
 
 
 
-# Aula 2 - Cadastrando Clientes e Produtos com Python
+# Aula 2 — Cadastrando e Buscando Clientes e Produtos com Python
 
 ## Continuação da Aula 1
 
@@ -695,9 +695,15 @@ vendas
 vendas_produtos
 ```
 
-Nesta aula, vamos começar a colocar informações no banco.
+Nesta aula, vamos começar a inserir e consultar informações no banco usando Python.
 
-Também vamos melhorar a forma de configurar a conexão com o banco. Em vez de colocar host, usuário e senha diretamente no código Python, vamos usar um arquivo chamado `.env`.
+Também vamos melhorar a organização do código usando:
+
+* arquivo `.env` para guardar configurações do banco;
+* arquivo `.gitignore` para não enviar senhas ao Git;
+* funções que recebem parâmetros;
+* funções de processo para lidar com o `input()` do usuário;
+* busca com filtro opcional por nome.
 
 ---
 
@@ -705,16 +711,20 @@ Também vamos melhorar a forma de configurar a conexão com o banco. Em vez de c
 
 Ao final desta aula, você deverá conseguir:
 
-* inserir dados em uma tabela usando Python;
-* consultar dados do banco usando Python;
-* usar comandos SQL `INSERT` e `SELECT`;
+* carregar configurações do banco a partir de um arquivo `.env`;
+* entender por que não devemos colocar senhas diretamente no código;
+* inserir clientes no banco;
+* inserir produtos no banco;
+* buscar todos os clientes;
+* buscar clientes pelo nome;
+* buscar todos os produtos;
+* buscar produtos pelo nome;
 * criar um menu simples no terminal;
-* carregar configurações de banco a partir de um arquivo `.env`;
-* entender a importância de proteger senhas e dados de conexão.
+* separar funções de banco de funções de interação com o usuário.
 
 ---
 
-# 2. Antes de começar
+# 2. Estrutura do projeto
 
 Verifique se você ainda tem a pasta criada na aula anterior:
 
@@ -722,17 +732,12 @@ Verifique se você ainda tem a pasta criada na aula anterior:
 lanchonete-python
 ```
 
-Dentro dela, devem existir os arquivos:
-
-```
-main.py
-```
-
-Agora vamos criar também:
+Dentro dela, vamos usar estes arquivos:
 
 ```
 .env
 .gitignore
+main.py
 ```
 
 A estrutura ficará assim:
@@ -750,7 +755,7 @@ lanchonete-python/
 
 Na aula anterior, usamos a biblioteca `psycopg` para conectar ao PostgreSQL.
 
-Agora vamos instalar também a biblioteca `python-dotenv`, que permite ler variáveis do arquivo `.env`.
+Agora também vamos usar a biblioteca `python-dotenv`, que permite carregar configurações a partir do arquivo `.env`.
 
 No terminal, dentro da pasta do projeto, execute:
 
@@ -796,17 +801,9 @@ DB_SSLMODE   -> modo de conexão segura
 
 ---
 
-# 5. Por que usamos arquivo .env?
+# 5. Por que usamos o arquivo .env?
 
-O arquivo `.env` serve para guardar configurações importantes do sistema, como:
-
-* endereço do banco;
-* usuário;
-* senha;
-* porta;
-* nome do banco.
-
-Essas informações não devem ficar escritas diretamente dentro do código principal do programa, porque são dados sensíveis. Se o projeto for enviado para o GitHub ou para outro repositório Git, uma senha esquecida no código pode ficar pública e permitir que outras pessoas acessem o banco de dados. Por isso, usamos o `.env` para separar configurações secretas do código e adicionamos esse arquivo ao `.gitignore`, evitando que ele seja enviado para o Git.
+O arquivo `.env` serve para guardar configurações importantes do sistema, como endereço do banco, usuário, senha, porta e nome do banco. Essas informações não devem ficar escritas diretamente dentro do código Python, porque são dados sensíveis. Se o projeto for enviado para o GitHub ou para outro repositório Git com a senha dentro do código, outras pessoas podem conseguir acessar o banco de dados. Por isso, usamos o `.env` para separar as configurações secretas do código principal e colocamos esse arquivo no `.gitignore`, evitando que ele seja enviado para o Git.
 
 ---
 
@@ -826,7 +823,7 @@ __pycache__/
 *.pyc
 ```
 
-Isso indica que o Git deve ignorar esses arquivos e pastas.
+O arquivo `.gitignore` informa ao Git quais arquivos ou pastas devem ser ignorados.
 
 O mais importante aqui é:
 
@@ -866,25 +863,13 @@ def conectar():
     return conexao
 ```
 
-Esse código faz três coisas importantes:
+Esse código faz a conexão com o banco usando os dados do arquivo `.env`.
 
-```
-import os
-```
-
-Permite ler variáveis do sistema.
-
-```
-from dotenv import load_dotenv
-```
-
-Importa a função que carrega o arquivo `.env`.
+Este trecho carrega o arquivo `.env`:
 
 ```
 load_dotenv()
 ```
-
-Lê o arquivo `.env` e disponibiliza as variáveis para o Python.
 
 Depois disso, podemos usar:
 
@@ -894,11 +879,13 @@ os.getenv("DB_USER")
 os.getenv("DB_PASSWORD")
 ```
 
+Esses comandos buscam os valores que estão no arquivo `.env`.
+
 ---
 
-# 8. Testando a conexão com o banco
+# 8. Testando a conexão
 
-Antes de cadastrar clientes e produtos, vamos testar se a conexão está funcionando.
+Antes de continuar, vamos testar se a conexão está funcionando.
 
 Adicione esta função no arquivo `main.py`:
 
@@ -971,7 +958,7 @@ Conexão realizada com sucesso!
 Se aparecer erro, verifique:
 
 * se o arquivo `.env` existe;
-* se o nome das variáveis está correto;
+* se os nomes das variáveis estão corretos;
 * se o host está correto;
 * se a porta está correta;
 * se o usuário está correto;
@@ -981,29 +968,75 @@ Se aparecer erro, verifique:
 
 ---
 
-# 9. O que vamos fazer hoje?
+# 9. Separando melhor as funções
 
-Na aula passada, o Python criou as tabelas.
+Nesta aula, vamos organizar o código em dois tipos de funções.
 
-Hoje vamos fazer o Python executar comandos como estes:
+## Funções de banco
 
-```
-INSERT INTO clientes (nome)
-VALUES ('Ana');
-```
+São funções que fazem operações no banco.
 
-E também:
+Exemplos:
 
 ```
-SELECT id, nome
-FROM clientes;
+cadastrar_cliente(nome)
+buscar_clientes(nome=None)
+cadastrar_produto(nome, valor_sugerido)
+buscar_produtos(nome=None)
 ```
 
-Mas, em vez de escrever os dados direto no SQL, vamos pedir para o usuário digitar pelo terminal.
+Essas funções recebem parâmetros e não pedem dados com `input()`.
 
 ---
 
-# 10. Criando a função para cadastrar clientes
+## Funções de processo
+
+São funções que conversam com o usuário pelo terminal.
+
+Exemplos:
+
+```
+processo_cadastrar_cliente()
+processo_listar_clientes()
+processo_cadastrar_produto()
+processo_listar_produtos()
+```
+
+Essas funções usam `input()`, chamam as funções de banco e mostram mensagens na tela.
+
+---
+
+# 10. Por que separar desse jeito?
+
+Observe esta função:
+
+```
+def cadastrar_cliente(nome):
+```
+
+Ela recebe o nome como parâmetro.
+
+Isso significa que essa função não precisa saber de onde veio o nome.
+
+O nome poderia vir:
+
+* do teclado;
+* de uma página web;
+* de um aplicativo;
+* de uma planilha;
+* de outro sistema.
+
+Por enquanto, o nome virá do `input()`, mas quem fará isso será outra função:
+
+```
+def processo_cadastrar_cliente():
+```
+
+Essa separação deixa o código mais organizado.
+
+---
+
+# 11. Função para cadastrar cliente
 
 Remova a linha final:
 
@@ -1011,12 +1044,10 @@ Remova a linha final:
 testar_conexao()
 ```
 
-Agora adicione a função `cadastrar_cliente`:
+Agora adicione esta função:
 
 ```
-def cadastrar_cliente():
-    nome = input("Digite o nome do cliente: ")
-
+def cadastrar_cliente(nome):
     conexao = conectar()
     cursor = conexao.cursor()
 
@@ -1032,75 +1063,53 @@ def cadastrar_cliente():
     print("Cliente cadastrado com sucesso.")
 ```
 
----
-
-# 11. Entendendo o cadastro de clientes
-
-Este trecho pede o nome do cliente:
+Essa função recebe o nome como parâmetro:
 
 ```
-nome = input("Digite o nome do cliente: ")
+cadastrar_cliente(nome)
 ```
 
-Este trecho abre a conexão com o banco:
+Exemplo de uso:
 
 ```
-conexao = conectar()
-```
-
-Este trecho cria um cursor:
-
-```
-cursor = conexao.cursor()
-```
-
-O cursor é usado para executar comandos SQL.
-
-Este trecho insere o cliente no banco:
-
-```
-cursor.execute("""
-    INSERT INTO clientes (nome)
-    VALUES (%s);
-""", (nome,))
-```
-
-O `%s` é um espaço reservado.
-
-O valor digitado pelo usuário será colocado ali de forma segura.
-
-Este trecho confirma a gravação no banco:
-
-```
-conexao.commit()
-```
-
-Sem o `commit`, o dado pode não ser salvo definitivamente.
-
-Este trecho fecha o cursor e a conexão:
-
-```
-cursor.close()
-conexao.close()
+cadastrar_cliente("Ana")
 ```
 
 ---
 
-# 12. Testando o cadastro de clientes
+# 12. Função de processo para cadastrar cliente
 
-No final do arquivo `main.py`, escreva:
+Agora adicione a função que pede o nome pelo terminal:
 
 ```
-cadastrar_cliente()
+def processo_cadastrar_cliente():
+    nome = input("Digite o nome do cliente: ")
+
+    cadastrar_cliente(nome)
 ```
 
-Execute no terminal:
+Essa função faz duas coisas:
+
+1. pede o nome do cliente;
+2. chama a função `cadastrar_cliente(nome)`.
+
+---
+
+# 13. Testando o cadastro de cliente
+
+No final do arquivo, coloque:
+
+```
+processo_cadastrar_cliente()
+```
+
+Execute:
 
 ```
 python main.py
 ```
 
-Digite um nome de cliente, por exemplo:
+Digite um nome, por exemplo:
 
 ```
 Ana
@@ -1112,7 +1121,7 @@ Resultado esperado:
 Cliente cadastrado com sucesso.
 ```
 
-Execute mais algumas vezes e cadastre outros clientes:
+Depois, execute novamente e cadastre outros clientes:
 
 ```
 Bruno
@@ -1122,44 +1131,177 @@ Mariana
 
 ---
 
-# 13. Criando a função para listar clientes
+# 14. Função para buscar clientes
 
-Agora vamos criar uma função para mostrar os clientes cadastrados.
+Agora vamos criar uma função para buscar clientes no banco.
 
-Apague a linha final:
-
-```
-cadastrar_cliente()
-```
-
-E adicione esta nova função:
+Ela poderá funcionar de duas formas:
 
 ```
-def listar_clientes():
+buscar_clientes()
+```
+
+Busca todos os clientes.
+
+```
+buscar_clientes("ana")
+```
+
+Busca clientes que tenham “ana” no nome.
+
+Adicione a função:
+
+```
+def buscar_clientes(nome=None):
     conexao = conectar()
     cursor = conexao.cursor()
 
-    cursor.execute("""
-        SELECT id, nome
-        FROM clientes
-        ORDER BY id;
-    """)
+    if nome is None or nome == "":
+        cursor.execute("""
+            SELECT id, nome
+            FROM clientes
+            ORDER BY id;
+        """)
+    else:
+        cursor.execute("""
+            SELECT id, nome
+            FROM clientes
+            WHERE nome ILIKE %s
+            ORDER BY id;
+        """, (f"%{nome}%",))
 
     clientes = cursor.fetchall()
 
     cursor.close()
     conexao.close()
 
+    return clientes
+```
+
+---
+
+# 15. Entendendo o nome=None
+
+Na função:
+
+```
+def buscar_clientes(nome=None):
+```
+
+O parâmetro `nome` é opcional.
+
+Se a função for chamada assim:
+
+```
+buscar_clientes()
+```
+
+O valor de `nome` será:
+
+```
+None
+```
+
+Então o sistema entende que deve buscar todos os clientes.
+
+Se a função for chamada assim:
+
+```
+buscar_clientes("ana")
+```
+
+O valor de `nome` será:
+
+```
+"ana"
+```
+
+Então o sistema entende que deve buscar clientes com esse texto no nome.
+
+---
+
+# 16. Entendendo o filtro com ILIKE
+
+Este trecho faz a busca pelo nome:
+
+```
+WHERE nome ILIKE %s
+```
+
+O `ILIKE` é parecido com o `LIKE`, mas ele não diferencia letras maiúsculas e minúsculas.
+
+Exemplo:
+
+```
+ana
+```
+
+Pode encontrar:
+
+```
+Ana
+Mariana
+Ana Clara
+```
+
+Este trecho:
+
+```
+(f"%{nome}%",)
+```
+
+coloca o texto digitado entre `%`.
+
+Exemplo:
+
+```
+nome = "ana"
+```
+
+Vira:
+
+```
+"%ana%"
+```
+
+Isso significa:
+
+```
+Encontre nomes que tenham "ana" em qualquer parte.
+```
+
+---
+
+# 17. Função de processo para listar clientes
+
+Agora vamos criar a função que pergunta se o usuário quer filtrar por nome e mostra o resultado na tela.
+
+Adicione:
+
+```
+def processo_listar_clientes():
+    nome = input("Digite parte do nome do cliente ou pressione ENTER para listar todos: ")
+
+    clientes = buscar_clientes(nome)
+
     print("\n--- Clientes cadastrados ---")
+
+    if len(clientes) == 0:
+        print("Nenhum cliente encontrado.")
+        return
 
     for cliente in clientes:
         print(f"{cliente[0]} - {cliente[1]}")
 ```
 
-No final do arquivo, chame a função:
+---
+
+# 18. Testando a busca de clientes
+
+No final do arquivo, troque para:
 
 ```
-listar_clientes()
+processo_listar_clientes()
 ```
 
 Execute:
@@ -1167,6 +1309,8 @@ Execute:
 ```
 python main.py
 ```
+
+Teste primeiro pressionando ENTER sem digitar nada.
 
 Resultado esperado:
 
@@ -1178,59 +1322,30 @@ Resultado esperado:
 4 - Mariana
 ```
 
----
-
-# 14. Entendendo a listagem de clientes
-
-Este comando busca os clientes no banco:
+Agora execute novamente e digite:
 
 ```
-SELECT id, nome
-FROM clientes
-ORDER BY id;
+ana
 ```
 
-Ele significa:
+Resultado possível:
 
 ```
-Selecione o id e o nome da tabela clientes, ordenando pelo id.
-```
-
-Este trecho pega todos os resultados:
-
-```
-clientes = cursor.fetchall()
-```
-
-Este trecho percorre os clientes encontrados:
-
-```
-for cliente in clientes:
-    print(f"{cliente[0]} - {cliente[1]}")
-```
-
-Cada `cliente` é uma linha retornada pelo banco.
-
-Exemplo:
-
-```
-cliente[0] -> id
-cliente[1] -> nome
+--- Clientes cadastrados ---
+1 - Ana
+4 - Mariana
 ```
 
 ---
 
-# 15. Criando a função para cadastrar produtos
+# 19. Função para cadastrar produto
 
-Agora vamos cadastrar produtos da lanchonete.
+Agora vamos criar a função para cadastrar produtos.
 
-Adicione esta função no arquivo `main.py`:
+Adicione:
 
 ```
-def cadastrar_produto():
-    nome = input("Digite o nome do produto: ")
-    valor_sugerido = float(input("Digite o valor sugerido: "))
-
+def cadastrar_produto(nome, valor_sugerido):
     conexao = conectar()
     cursor = conexao.cursor()
 
@@ -1246,10 +1361,61 @@ def cadastrar_produto():
     print("Produto cadastrado com sucesso.")
 ```
 
-No final do arquivo, troque para:
+Essa função recebe dois parâmetros:
 
 ```
-cadastrar_produto()
+nome
+valor_sugerido
+```
+
+Exemplo de uso:
+
+```
+cadastrar_produto("Coxinha", 6.50)
+```
+
+---
+
+# 20. Função de processo para cadastrar produto
+
+Agora adicione a função que pede os dados do produto no terminal:
+
+```
+def processo_cadastrar_produto():
+    nome = input("Digite o nome do produto: ")
+    valor_sugerido = float(input("Digite o valor sugerido: "))
+
+    cadastrar_produto(nome, valor_sugerido)
+```
+
+---
+
+# 21. Atenção ao valor do produto
+
+Quando o programa pedir o valor, use ponto em vez de vírgula.
+
+Use assim:
+
+```
+6.50
+```
+
+Não use assim:
+
+```
+6,50
+```
+
+Em Python, números decimais usam ponto.
+
+---
+
+# 22. Testando o cadastro de produtos
+
+No final do arquivo, coloque:
+
+```
+processo_cadastrar_produto()
 ```
 
 Execute:
@@ -1279,58 +1445,85 @@ Pão de queijo
 
 ---
 
-# 16. Atenção ao valor do produto
+# 23. Função para buscar produtos
 
-Quando o programa pedir o valor, use ponto em vez de vírgula.
+Agora vamos criar uma função para buscar produtos.
 
-Use assim:
+Ela também aceitará filtro opcional por nome.
 
-```
-6.50
-```
-
-Não use assim:
+Adicione:
 
 ```
-6,50
-```
-
-Em Python, números decimais usam ponto.
-
----
-
-# 17. Criando a função para listar produtos
-
-Agora vamos listar os produtos cadastrados.
-
-Adicione esta função:
-
-```
-def listar_produtos():
+def buscar_produtos(nome=None):
     conexao = conectar()
     cursor = conexao.cursor()
 
-    cursor.execute("""
-        SELECT id, nome, valor_sugerido
-        FROM produtos
-        ORDER BY id;
-    """)
+    if nome is None or nome == "":
+        cursor.execute("""
+            SELECT id, nome, valor_sugerido
+            FROM produtos
+            ORDER BY id;
+        """)
+    else:
+        cursor.execute("""
+            SELECT id, nome, valor_sugerido
+            FROM produtos
+            WHERE nome ILIKE %s
+            ORDER BY id;
+        """, (f"%{nome}%",))
 
     produtos = cursor.fetchall()
 
     cursor.close()
     conexao.close()
 
+    return produtos
+```
+
+Essa função funciona de duas formas:
+
+```
+buscar_produtos()
+```
+
+Busca todos os produtos.
+
+```
+buscar_produtos("co")
+```
+
+Busca produtos que tenham “co” no nome.
+
+---
+
+# 24. Função de processo para listar produtos
+
+Agora adicione a função que mostra os produtos na tela:
+
+```
+def processo_listar_produtos():
+    nome = input("Digite parte do nome do produto ou pressione ENTER para listar todos: ")
+
+    produtos = buscar_produtos(nome)
+
     print("\n--- Produtos cadastrados ---")
+
+    if len(produtos) == 0:
+        print("Nenhum produto encontrado.")
+        return
 
     for produto in produtos:
         print(f"{produto[0]} - {produto[1]} - R$ {produto[2]}")
 ```
 
-No final do arquivo, chame:
+---
+
+# 25. Testando a busca de produtos
+
+No final do arquivo, coloque:
 
 ```
-listar_produtos()
+processo_listar_produtos()
 ```
 
 Execute:
@@ -1338,6 +1531,8 @@ Execute:
 ```
 python main.py
 ```
+
+Teste pressionando ENTER sem digitar nada.
 
 Resultado esperado:
 
@@ -1350,9 +1545,22 @@ Resultado esperado:
 5 - Pão de queijo - R$ 4.50
 ```
 
+Agora execute novamente e digite:
+
+```
+co
+```
+
+Resultado possível:
+
+```
+--- Produtos cadastrados ---
+1 - Coxinha - R$ 6.50
+```
+
 ---
 
-# 18. Criando um menu
+# 26. Criando o menu
 
 Agora vamos criar um menu para o usuário escolher o que deseja fazer.
 
@@ -1363,24 +1571,24 @@ def menu():
     while True:
         print("\n=== Sistema da Lanchonete ===")
         print("1 - Cadastrar cliente")
-        print("2 - Listar clientes")
+        print("2 - Listar ou buscar clientes")
         print("3 - Cadastrar produto")
-        print("4 - Listar produtos")
+        print("4 - Listar ou buscar produtos")
         print("0 - Sair")
 
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
-            cadastrar_cliente()
+            processo_cadastrar_cliente()
 
         elif opcao == "2":
-            listar_clientes()
+            processo_listar_clientes()
 
         elif opcao == "3":
-            cadastrar_produto()
+            processo_cadastrar_produto()
 
         elif opcao == "4":
-            listar_produtos()
+            processo_listar_produtos()
 
         elif opcao == "0":
             print("Encerrando o sistema...")
@@ -1398,7 +1606,7 @@ menu()
 
 ---
 
-# 19. Código completo da Aula 2
+# 27. Código completo da Aula 2
 
 Ao final da aula, o arquivo `main.py` deve ficar assim:
 
@@ -1424,9 +1632,7 @@ def conectar():
     return conexao
 
 
-def cadastrar_cliente():
-    nome = input("Digite o nome do cliente: ")
-
+def cadastrar_cliente(nome):
     conexao = conectar()
     cursor = conexao.cursor()
 
@@ -1442,31 +1648,33 @@ def cadastrar_cliente():
     print("Cliente cadastrado com sucesso.")
 
 
-def listar_clientes():
+def buscar_clientes(nome=None):
     conexao = conectar()
     cursor = conexao.cursor()
 
-    cursor.execute("""
-        SELECT id, nome
-        FROM clientes
-        ORDER BY id;
-    """)
+    if nome is None or nome == "":
+        cursor.execute("""
+            SELECT id, nome
+            FROM clientes
+            ORDER BY id;
+        """)
+    else:
+        cursor.execute("""
+            SELECT id, nome
+            FROM clientes
+            WHERE nome ILIKE %s
+            ORDER BY id;
+        """, (f"%{nome}%",))
 
     clientes = cursor.fetchall()
 
     cursor.close()
     conexao.close()
 
-    print("\n--- Clientes cadastrados ---")
-
-    for cliente in clientes:
-        print(f"{cliente[0]} - {cliente[1]}")
+    return clientes
 
 
-def cadastrar_produto():
-    nome = input("Digite o nome do produto: ")
-    valor_sugerido = float(input("Digite o valor sugerido: "))
-
+def cadastrar_produto(nome, valor_sugerido):
     conexao = conectar()
     cursor = conexao.cursor()
 
@@ -1482,22 +1690,70 @@ def cadastrar_produto():
     print("Produto cadastrado com sucesso.")
 
 
-def listar_produtos():
+def buscar_produtos(nome=None):
     conexao = conectar()
     cursor = conexao.cursor()
 
-    cursor.execute("""
-        SELECT id, nome, valor_sugerido
-        FROM produtos
-        ORDER BY id;
-    """)
+    if nome is None or nome == "":
+        cursor.execute("""
+            SELECT id, nome, valor_sugerido
+            FROM produtos
+            ORDER BY id;
+        """)
+    else:
+        cursor.execute("""
+            SELECT id, nome, valor_sugerido
+            FROM produtos
+            WHERE nome ILIKE %s
+            ORDER BY id;
+        """, (f"%{nome}%",))
 
     produtos = cursor.fetchall()
 
     cursor.close()
     conexao.close()
 
+    return produtos
+
+
+def processo_cadastrar_cliente():
+    nome = input("Digite o nome do cliente: ")
+
+    cadastrar_cliente(nome)
+
+
+def processo_listar_clientes():
+    nome = input("Digite parte do nome do cliente ou pressione ENTER para listar todos: ")
+
+    clientes = buscar_clientes(nome)
+
+    print("\n--- Clientes cadastrados ---")
+
+    if len(clientes) == 0:
+        print("Nenhum cliente encontrado.")
+        return
+
+    for cliente in clientes:
+        print(f"{cliente[0]} - {cliente[1]}")
+
+
+def processo_cadastrar_produto():
+    nome = input("Digite o nome do produto: ")
+    valor_sugerido = float(input("Digite o valor sugerido: "))
+
+    cadastrar_produto(nome, valor_sugerido)
+
+
+def processo_listar_produtos():
+    nome = input("Digite parte do nome do produto ou pressione ENTER para listar todos: ")
+
+    produtos = buscar_produtos(nome)
+
     print("\n--- Produtos cadastrados ---")
+
+    if len(produtos) == 0:
+        print("Nenhum produto encontrado.")
+        return
 
     for produto in produtos:
         print(f"{produto[0]} - {produto[1]} - R$ {produto[2]}")
@@ -1507,24 +1763,24 @@ def menu():
     while True:
         print("\n=== Sistema da Lanchonete ===")
         print("1 - Cadastrar cliente")
-        print("2 - Listar clientes")
+        print("2 - Listar ou buscar clientes")
         print("3 - Cadastrar produto")
-        print("4 - Listar produtos")
+        print("4 - Listar ou buscar produtos")
         print("0 - Sair")
 
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
-            cadastrar_cliente()
+            processo_cadastrar_cliente()
 
         elif opcao == "2":
-            listar_clientes()
+            processo_listar_clientes()
 
         elif opcao == "3":
-            cadastrar_produto()
+            processo_cadastrar_produto()
 
         elif opcao == "4":
-            listar_produtos()
+            processo_listar_produtos()
 
         elif opcao == "0":
             print("Encerrando o sistema...")
@@ -1539,7 +1795,7 @@ menu()
 
 ---
 
-# 20. Executando o programa final
+# 28. Executando o programa final
 
 No terminal, execute:
 
@@ -1552,9 +1808,9 @@ O menu deve aparecer:
 ```
 === Sistema da Lanchonete ===
 1 - Cadastrar cliente
-2 - Listar clientes
+2 - Listar ou buscar clientes
 3 - Cadastrar produto
-4 - Listar produtos
+4 - Listar ou buscar produtos
 0 - Sair
 Escolha uma opção:
 ```
@@ -1563,7 +1819,7 @@ Teste todas as opções.
 
 ---
 
-# 21. Atividade prática
+# 29. Atividade prática
 
 Cadastre pelo menos 3 clientes:
 
@@ -1583,73 +1839,86 @@ Suco - 7.00
 Pão de queijo - 4.50
 ```
 
-Depois, use as opções de listagem para verificar se os dados foram salvos corretamente.
+Depois, teste as buscas.
+
+Busque clientes usando:
+
+```
+ana
+bru
+mar
+```
+
+Busque produtos usando:
+
+```
+co
+re
+su
+```
 
 ---
 
-# 22. Perguntas para responder
+# 30. Perguntas para responder
 
 Responda no caderno ou em um arquivo de texto:
 
-1. Para que serve o comando `INSERT INTO`?
-2. Para que serve o comando `SELECT`?
-3. O que o comando `commit()` faz?
-4. Por que usamos `%s` dentro do comando SQL?
-5. O que a função `fetchall()` retorna?
-6. Qual é a diferença entre cadastrar e listar?
-7. Por que usamos um menu com `while True`?
-8. O que acontece quando o usuário escolhe a opção `0`?
-9. Por que o valor do produto precisa ser digitado com ponto?
-10. Qual tabela guarda os nomes dos clientes?
-11. Para que serve o arquivo `.env`?
-12. Por que o arquivo `.env` não deve ser enviado para o Git?
-13. Para que serve o arquivo `.gitignore`?
+1. Para que serve o arquivo `.env`?
+2. Por que o arquivo `.env` não deve ser enviado para o Git?
+3. Para que serve o arquivo `.gitignore`?
+4. Para que serve o comando `INSERT INTO`?
+5. Para que serve o comando `SELECT`?
+6. O que o comando `commit()` faz?
+7. Por que usamos `%s` dentro do comando SQL?
+8. O que a função `fetchall()` retorna?
+9. O que significa `nome=None` na função `buscar_clientes(nome=None)`?
+10. Qual é a diferença entre `buscar_clientes()` e `buscar_clientes("ana")`?
+11. Para que serve o `ILIKE`?
+12. Por que usamos uma função `processo_cadastrar_cliente()` separada da função `cadastrar_cliente(nome)`?
+13. Qual é a vantagem de passar parâmetros para uma função?
+14. O que acontece quando o usuário pressiona ENTER sem digitar um nome na busca?
+15. O que acontece quando o usuário escolhe a opção `0` no menu?
 
 ---
 
-# 23. Desafio extra
+# 31. Desafio extra
 
-Adicione uma nova opção no menu:
-
-```
-5 - Buscar cliente pelo nome
-```
-
-Dica: você pode usar um comando parecido com este:
-
-```
-SELECT id, nome
-FROM clientes
-WHERE nome ILIKE %s;
-```
-
-O `ILIKE` permite buscar sem diferenciar letras maiúsculas e minúsculas.
+Adicione uma busca de produtos por valor máximo.
 
 Exemplo:
 
 ```
-ana
+Digite o valor máximo: 6.00
 ```
 
-Pode encontrar:
+Resultado esperado:
 
 ```
-Ana
+Produtos com valor até R$ 6.00
+```
+
+Dica de SQL:
+
+```
+SELECT id, nome, valor_sugerido
+FROM produtos
+WHERE valor_sugerido <= %s
+ORDER BY valor_sugerido;
 ```
 
 ---
 
-# 24. Resumo da aula
+# 32. Resumo da aula
 
 Nesta aula, aprendemos que:
 
 * o Python pode inserir dados no banco;
-* o comando `INSERT INTO` salva informações;
-* o comando `SELECT` consulta informações;
-* o menu permite escolher ações no sistema;
-* clientes e produtos já podem ser cadastrados;
-* os dados continuam salvos mesmo depois que o programa fecha;
-* o arquivo `.env` guarda configurações sensíveis;
-* o arquivo `.gitignore` evita que arquivos importantes sejam enviados para o Git.
+* o Python pode buscar dados no banco;
+* podemos passar parâmetros para funções;
+* podemos criar parâmetros opcionais usando `None`;
+* podemos usar `ILIKE` para buscar parte de um texto;
+* o arquivo `.env` guarda dados sensíveis;
+* o arquivo `.gitignore` ajuda a proteger o arquivo `.env`;
+* separar funções de banco e funções de processo deixa o código mais organizado.
 
 Na próxima aula, vamos registrar uma venda escolhendo um cliente e adicionando produtos vendidos.
