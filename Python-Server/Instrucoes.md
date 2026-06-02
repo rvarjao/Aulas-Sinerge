@@ -2,7 +2,7 @@
 
 ## Índice
 - [1. Contexto do sistema](#Aula-1---Contexto-do-sistema)
-- [2. Cadastrando clientes e produtos com Python](#Aula-2-—-Cadastrando-Clientes-e-Produtos-com-Python)
+- [2. Cadastrando clientes e produtos com Python](#Aula-2---Cadastrando-Clientes-e-Produtos-com-Python)
 
 
 ## Aula 1 - Contexto do sistema
