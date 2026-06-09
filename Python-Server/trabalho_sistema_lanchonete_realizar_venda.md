@@ -469,6 +469,12 @@ Total: **1,0 ponto**
 
 ---
 
+## Entrega
+
+O trabalho deverá estar disponível no seu próprio GitHub até o dia 15/06 às 23:59
+
+---
+
 ## Observações
 
 O professor fará em aula uma explicação das principais queries necessárias usando apenas o banco de dados.
