@@ -1,9 +1,3 @@
-Entendi. Então, em vez de cada grupo criar uma empresa fictícia do zero, essa turma está **analisando empresas diferentes** e simulando as áreas internas delas.
-
-Nesse caso, a página deve ser menos “inventar uma empresa” e mais **apresentar a análise da empresa escolhida**, mostrando como cada setor funciona ou poderia funcionar.
-
-A estrutura padrão pode ficar assim:
-
 # Estrutura da página para cada equipe
 
 ## 1. Apresentação da empresa analisada
@@ -181,19 +175,3 @@ Exemplo:
 
 > Concluímos que o setor de Produção é essencial para garantir que a empresa entregue seus produtos com qualidade. A principal melhoria sugerida pela equipe foi criar um checklist para evitar erros e atrasos.
 
----
-
-# Estrutura final obrigatória
-
-Eu passaria para os alunos assim:
-
-1. **Apresentação da empresa analisada**
-2. **Apresentação da equipe**
-3. **Função do setor dentro da empresa**
-4. **Principais atividades do setor**
-5. **Análise da empresa**
-6. **Propostas de melhoria**
-7. **Histórico da análise**
-8. **Conclusão da equipe**
-
-Essa estrutura funciona para Financeiro, Marketing, Produção e RH, mesmo que cada grupo esteja analisando uma empresa diferente.
