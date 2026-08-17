@@ -1,0 +1,102 @@
+order_id,order_date,customer,city,state,product,category,quantity,unit_price_us_format,salesperson,status
+ORD-1001,2026-08-10,Loja Central,Sao Jose,SC,A4 Paper Box,Office Supplies,12,32.90,Carlos Souza,Paid
+ORD-1002,2026-07-07,Restaurante Sabor,Palhoca,SC,USB Mouse,IT,10,59.90,Ana Martins,Paid
+ORD-1003,2026-07-14,Hotel Mar Azul,Palhoca,SC,Coffee 1kg,Pantry,10,36.48,Carlos Souza,Pending
+ORD-1004,2026-08-14,Restaurante Sabor,Palhoca,SC,Cleaning Kit,Cleaning,4,42.60,Juliana Lima,Pending
+ORD-1005,2026-07-01,Clinica Vida,Florianopolis,SC,Office Chair,Furniture,7,549.00,Juliana Lima,Paid
+ORD-1006,2026-07-22,Loja Central,Sao Jose,SC,USB Mouse,IT,7,56.90,Juliana Lima,Pending
+ORD-1007,2026-08-08,Pousada Encanto,Garopaba,SC,A4 Paper Box,Office Supplies,12,32.90,Ana Martins,Cancelled
+ORD-1008,2026-07-25,  Mercado Sol ,Sao Jose,SC,Coffee 1kg,Pantry,5,40.32,Juliana Lima,Paid
+ORD-1009,2026-08-15,Loja Central,Sao Jose,SC,A4 Paper Box,Office Supplies,11,32.90,Juliana Lima,Cancelled
+ORD-1010,2026-07-15,Loja Central,Sao Jose,SC,Cleaning Kit,Cleaning,5,42.60,Juliana Lima,Paid
+ORD-1011,2026-07-23,Hotel Mar Azul,Palhoca,SC,LED Desk Lamp,Furniture,5,71.16,Carlos Souza,Paid
+ORD-1012,2026-07-16,Clinica Vida,Florianopolis,SC,Liquid Soap 5L,Cleaning,7,27.90,Carlos Souza,Paid
+ORD-1013,2026-07-04,Hotel Mar Azul,Palhoca,SC,A4 Paper Box,Office Supplies,6,32.90,Juliana Lima,Paid
+ORD-1014,2026-08-06,Escola Horizonte,Biguaçu,SC,Printer Toner,IT,11,189.00,Rafael Costa,Pending
+ORD-1015,2026-08-11,Tech Office,Florianópolis,SC,Keyboard,IT,5,89.50,Carlos Souza,Pending
+ORD-1016,2026-08-04,Pousada Encanto,Garopaba,SC,Office Chair,Furniture,10,549.00,Rafael Costa,Paid
+ORD-1017,2026-07-09,Restaurante Sabor,Palhoca,SC,Liquid Soap 5L,Cleaning,2,26.50,Ana Martins,Paid
+ORD-1018,2026-07-11,Farmacia Bem Estar,Florianopolis,SC,Sugar 5kg,Pantry,2,21.80,Rafael Costa,Paid
+ORD-1019,2026-07-30,Restaurante Sabor,Palhoca,SC,Ballpoint Pen Pack,Office Supplies,9,17.81,Ana Martins,Paid
+ORD-1020,2026-08-04,Pousada Encanto,Garopaba,SC,LED Desk Lamp,Furniture,6,71.16,Juliana Lima,Paid
+ORD-1021,2026-07-30,Mercado Sol,Florianopolis,SC,Office Chair,Furniture,12,549.00,Carlos Souza,Paid
+ORD-1022,2026-07-07,Pousada Encanto,SAO JOSE,SC,LED Desk Lamp,Furniture,9,78.65,Carlos Souza,Paid
+ORD-1023,2026-07-11,Restaurante Sabor,Palhoca,SC,Coffee 1kg,Pantry,1,40.32,Juliana Lima,Paid
+ORD-1024,2026-07-08,Escola Horizonte,Biguaçu,SC,Ballpoint Pen Pack,Office Supplies,4,17.81,Carlos Souza,Pending
+ORD-1025,2026-07-06,Loja Central,Sao Jose,SC,Office Chair,Furniture,8,521.55,Carlos Souza,Paid
+ORD-1026,2026-07-31,Restaurante Sabor,Palhoca,SC,Keyboard,IT,5,93.98,Rafael Costa,Cancelled
+ORD-1027,2026-08-04,Hotel Mar Azul,Palhoca,SC,Office Chair,Furniture,5,549.00,Juliana Lima,Paid
+ORD-1028,2026-08-03,Tech Office,Sao Jose,SC,USB Mouse,IT,4,59.90,Ana Martins,Paid
+ORD-1029,2026-08-07,Restaurante Sabor,Palhoca,SC,Printer Toner,IT,10,189.00,Ana Martins,paid
+ORD-1030,2026-08-10,Mercado Sol,Florianopolis,SC,Printer Toner,IT,2,179.55,Juliana Lima,Paid
+ORD-1031,2026-07-16,Pousada Encanto,Garopaba,SC,LED Desk Lamp,Furniture,8,74.90,Carlos Souza,Pending
+ORD-1032,2026-08-06,Academia Movimento,Florianopolis,SC,Liquid Soap 5L,Cleaning,4,27.90,Rafael Costa,Paid
+ORD-1033,2026-07-07,Farmacia Bem Estar,Florianopolis,SC,Notebook A5,Office Supplies,7,14.30,Rafael Costa,Pending
+ORD-1034,2026-07-04,Loja Central,Sao Jose,SC,A4 Paper Box,Office Supplies,7,32.90,Ana Martins,PENDING
+ORD-1035,2026-07-13,Restaurante Sabor,Palhoca,SC,Liquid Soap 5L,Cleaning,3,27.90,Carlos Souza,Paid
+ORD-1036,2026-07-16,Loja Central,Sao Jose,SC,Liquid Soap 5L,Cleaning,9,26.50,Ana Martins,Paid
+ORD-1037,2026-08-04,Mercado Sol,Florianopolis,SC,USB Mouse,IT,4,59.90,Rafael Costa,Paid
+ORD-1038,2026-07-14,Farmacia Bem Estar,Florianopolis,SC,A4 Paper Box,Office Supplies,3,32.90,Ana Martins,Cancelled
+ORD-1039,2026-07-17,Tech Office,Sao Jose,SC,Ballpoint Pen Pack,Office Supplies,7,19.69,Rafael Costa,Paid
+ORD-1040,2026-07-19,Hotel Mar Azul,Palhoca,SC,A4 Paper Box,Office Supplies,10,34.55,Ana Martins,Pending
+ORD-1041,2026-07-04,Mercado Sol,Florianopolis,SC,Sugar 5kg,Pantry,8,22.89,,Paid
+ORD-1042,2026-08-02,Loja Central,Sao Jose,SC,Keyboard,IT,2,93.98,Ana Martins,Paid
+ORD-1043,2026-07-16,Farmacia Bem Estar,Florianopolis,SC,USB Mouse,IT,10,59.90,Ana Martins,Paid
+ORD-1044,2026-07-27,Academia Movimento,Florianopolis,SC,Sugar 5kg,Pantry,9,21.80,Juliana Lima,Paid
+ORD-1045,2026-08-15,Escola Horizonte,Biguaçu,SC,Printer Toner,IT,5,189.00,Carlos Souza,Paid
+ORD-1046,2026-07-20,Tech Office,Sao Jose,SC,Notebook A5,Office Supplies,2,13.59,Rafael Costa,Paid
+ORD-1047,2026-08-06,Loja Central,Sao Jose,SC,USB Mouse,IT,9,59.90,Juliana Lima,Paid
+ORD-1048,2026-07-23,Loja Central,Sao Jose,SC,Printer Toner,,6,189.00,Carlos Souza,Paid
+ORD-1049,2026-08-04,Pousada Encanto,Garopaba,SC,Sugar 5kg,Pantry,11,22.89,Ana Martins,Paid
+ORD-1050,2026-08-05,Pousada Encanto,Garopaba,SC,LED Desk Lamp,Furniture,2,74.90,Juliana Lima,Paid
+ORD-1051,2026-07-07,Restaurante Sabor,Palhoca,SC,Keyboard,IT,5,89.50,Carlos Souza,Pending
+ORD-1052,2026-07-14,Pousada Encanto,Garopaba,SC,Coffee 1kg,Pantry,8,38.40,Ana Martins,Paid
+ORD-1053,2026-07-28,Pousada Encanto,Garopaba,SC,A4 Paper Box,Office Supplies,1,32.90,Carlos Souza,Paid
+ORD-1054,2026-07-17,Clinica Vida,Florianopolis,SC,Office Chair,Furniture,8,576.45,Rafael Costa,Paid
+ORD-1055,2026-07-08,Loja Central,Sao Jose,SC,Office Chair,Furniture,3,576.45,Ana Martins,Pending
+ORD-1056,2026-08-07,Clinica  Vida,Palhoca,SC,Keyboard,IT,7,89.50,Ana Martins,Paid
+ORD-1057,2026-07-03,Escola Horizonte,Biguaçu,SC,Printer Toner,IT,11,189.00,Ana Martins,Paid
+ORD-1058,2026-08-05,Farmacia Bem Estar,Florianopolis,SC,Sugar 5kg,Pantry,12,21.80,Carlos Souza,Pending
+ORD-1059,2026-07-12,Farmacia Bem Estar,Florianopolis,SC,A4 Paper Box,Office Supplies,3,32.90,Rafael Costa,Pending
+ORD-1060,2026-07-16,Pousada Encanto,Garopaba,SC,Keyboard,IT,12,85.02,Rafael Costa,Pending
+ORD-1061,2026-07-31,Hotel Mar Azul,Palhoca,SC,Printer Toner,IT,8,189.00,Juliana Lima,Pending
+ORD-1062,2026-07-15,Hotel Mar Azul,Palhoca,SC,A4 Paper Box,Office Supplies,11,32.90,Rafael Costa,Paid
+ORD-1063,2026-07-05,Pousada Encanto,Palhoca ,SC,Notebook A5,Office Supplies,11,15.02,Rafael Costa,Paid
+ORD-1064,2026-08-04,Escola Horizonte,Biguaçu,SC,A4 Paper Box,Office Supplies,2,32.90,Carlos Souza,Paid
+ORD-1065,2026-07-17,Mercado Sol,Florianopolis,SC,USB Mouse,IT,10,59.90,Juliana Lima,Pending
+ORD-1066,2026-07-21,Farmacia Bem Estar,Florianopolis,SC,Sugar 5kg,Pantry,9,20.71,Rafael Costa,Pending
+ORD-1067,2026-07-13,Pousada Encanto,Garopaba,SC,A4 Paper Box,Office Supplies,12,32.90,Ana Martins,Paid
+ORD-1068,2026-08-04,Hotel Mar Azul,Palhoca,SC,Notebook A5,Office Supplies,7,13.59,Juliana Lima,Paid
+ORD-1069,2026-08-12,Loja Central,Sao Jose,SC,Office Chair,Furniture,5,576.45,Juliana Lima,Paid
+ORD-1070,2026-07-21,Farmacia Bem Estar,Florianopolis,SC,Office Chair,Furniture,5,576.45,Carlos Souza,Pending 
+ORD-1071,2026-08-12,Farmacia Bem Estar,Florianopolis,SC,LED Desk Lamp,Furniture,12,74.90,Juliana Lima,Paid
+ORD-1072,2026-07-01,Pousada Encanto,Garopaba,SC,Ballpoint Pen Pack,Office Supplies,4,18.75,Juliana Lima,Paid
+ORD-1073,2026-07-29,Hotel Mar Azul,Palhoca,SC,Coffee 1kg,Pantry,8,38.40,Ana Martins,Paid
+ORD-1074,2026-08-12,Academia Movimento,Florianopolis,SC,Notebook A5,Office Supplies,2,14.30,Juliana Lima,Paid
+ORD-1075,2026-07-13,Clinica Vida,Florianopolis,SC,A4 Paper Box,Office Supplies,1,32.90,Rafael Costa,Paid
+ORD-1076,2026-07-05,Tech Office,Sao Jose,SC,Cleaning Kit,Cleaning,11,44.73,Carlos Souza,Pending
+ORD-1077,2026-07-25,Tech Office,Sao Jose,SC,Cleaning Kit,Cleaning,4,,Ana Martins,Pending
+ORD-1078,2026-07-07,Farmacia Bem Estar,Florianopolis,SC,Printer Toner,IT,3,198.45,Rafael Costa,Paid
+ORD-1079,2026-07-16,Loja Central,Sao Jose,SC,Liquid Soap 5L,Cleaning,3,27.90,Juliana Lima,Cancelled
+ORD-1080,2026-07-29,Academia Movimento,Florianopolis,SC,Office Chair,Furniture,9,549.00,Rafael Costa,Pending
+ORD-1081,2026-07-31,Tech Office,Sao Jose,SC,Ballpoint Pen Pack,Office Supplies,4,18.75,Rafael Costa,Paid
+ORD-1082,2026-07-18,Tech Office,Sao Jose,SC,USB Mouse,IT,12,59.90,Carlos Souza,Paid
+ORD-1083,2026-07-21,Restaurante Sabor,Palhoca,SC,USB Mouse,IT,3,59.90,Carlos Souza,Paid
+ORD-1084,2026-07-10,Hotel Mar Azul,Palhoca,SC,USB Mouse,IT,7,59.90,Juliana Lima,Paid
+ORD-1085,2026-07-27,Hotel Mar Azul ,Florianopolis,SC,Printer Toner,IT,7,189.00,Ana Martins,Pending
+ORD-1086,2026-08-06,Farmacia Bem Estar,Florianopolis,SC,Liquid Soap 5L,Cleaning,1,27.90,Juliana Lima,Pending
+ORD-1087,2026-07-27,Restaurante Sabor,Palhoca,SC,Office Chair,Furniture,12,576.45,Carlos Souza,Paid
+ORD-1088,2026-07-18,Farmacia Bem Estar,Florianopolis,SC,Liquid Soap 5L,Cleaning,1,27.90,Juliana Lima,Paid
+ORD-1089,2026-07-26,Clinica Vida,Florianopolis,SC,Liquid Soap 5L,Cleaning,3,29.29,Ana Martins,Pending
+ORD-1090,2026-08-07,Academia Movimento,Florianopolis,SC,LED Desk Lamp,Furniture,1,71.16,Rafael Costa,Paid
+ORD-1091,2026-07-30,Clinica Vida,Florianopolis,SC,A4 Paper Box,Office Supplies,5,32.90,Juliana Lima,Paid
+ORD-1092,2026-07-21,Escola Horizonte,Biguaçu,SC,Cleaning Kit,Cleaning,5,42.60,Juliana Lima,Pending
+ORD-1093,2026-07-31,Mercado Sol,Florianopolis,SC,Office Chair,Furniture,9,521.55,Juliana Lima,Paid
+ORD-1094,2026-07-05,Mercado Sol,Florianopolis,SC,A4 Paper Box,Office Supplies,4,32.90,Ana Martins,Paid
+ORD-1095,2026-07-16,Clinica Vida,Florianopolis,SC,Liquid Soap 5L,Cleaning,11,26.50,Carlos Souza,Paid
+ORD-1096,2026-07-17,Escola Horizonte,Biguaçu,SC,Keyboard,IT,10,93.98,Ana Martins,Pending
+ORD-1097,2026-07-11,Pousada Encanto,Garopaba,SC,USB Mouse,IT,10,56.90,Juliana Lima,Paid
+ORD-1098,2026-07-25,Farmacia Bem Estar,Florianopolis,SC,Office Chair,Furniture,4,521.55,Carlos Souza,Paid
+ORD-1099,2026-07-20,Academia Movimento,Florianopolis,SC,USB Mouse,IT,10,56.90,Juliana Lima,Paid
+ORD-1100,2026-08-12,Escola Horizonte,Biguaçu,SC,USB Mouse,IT,9,59.90,Ana Martins,Pending
+ORD-1019,2026-07-30,Restaurante Sabor,Palhoca,SC,Ballpoint Pen Pack,Office Supplies,9,17.81,Ana Martins,Paid
