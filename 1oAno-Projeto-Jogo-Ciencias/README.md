@@ -20,6 +20,11 @@ O sistema deverá possuir, obrigatoriamente:
 
 O objetivo não é apenas criar um sistema "sobre Ciências". O conceito científico deve participar de alguma forma do funcionamento da aplicação.
 
+
+---
+
+Use esse modelo para organizar a proposta do projeto. Escreva suas respostas neste [formulário ](https://forms.gle/2PA7kcCUNpQA2oT57).
+
 ---
 
 # Etapa 1 — Conhecer um exemplo
