@@ -988,7 +988,7 @@ GitHub
 Depois de concluir o desafio em equipe, cada integrante deverá responder
 individualmente ao questionário sobre Git, GitHub e desenvolvimento colaborativo.
 
-👉 **Questionário:** [Acessar Google Forms](LINK_DO_FORMULARIO)
+👉 **Questionário:** [Acessar Google Forms](https://forms.gle/hCTqKk9EvSgNggnV7)
 
 O questionário deverá ser respondido individualmente.
 
