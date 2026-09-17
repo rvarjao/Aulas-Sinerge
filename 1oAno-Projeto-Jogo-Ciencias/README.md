@@ -636,3 +636,16 @@ Ao terminar a proposta, todo grupo deverá conseguir responder:
 Se a resposta for **sim**, provavelmente a integração com Ciências ainda está muito superficial.
 
 Se a resposta for **não**, vocês provavelmente estão no caminho certo.
+
+-----
+
+# Formulário final
+
+Preencha o formulário final sobre o projeto. 
+
+**Cada integrante do grupo deve preencher**.
+
+Ele está disponível em: [Jogo de Ciências](https://forms.gle/i4NuD8W8eDdUBqQ88)
+
+
+
