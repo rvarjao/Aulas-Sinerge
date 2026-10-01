@@ -76,13 +76,30 @@ End Sub
 
 ---
 
-## 5. Execute e teste
+## 5. Crie o botão e vincule a macro
 
-1. Volte para a aba **Entrada** e altere o nome e o valor em `B2` e `B3`.
-2. Abra novamente o editor com `Alt + F11`.
-3. Clique em qualquer parte do código.
-4. Pressione `F5` ou clique no botão verde de executar.
-5. Volte para a aba **Resumo** e confira o resultado.
+1. Volte à planilha **Entrada**.
+2. Abra a guia **Desenvolvedor**.
+   - Se ela não aparecer, vá em **Arquivo > Opções > Personalizar Faixa de Opções** e marque **Desenvolvedor**.
+3. Clique em **Inserir**.
+4. Em **Controles de Formulário**, escolha **Botão**. Não escolha *Botão de comando ActiveX*.
+5. Clique e arraste na planilha, ao lado dos campos de cadastro, para desenhar o botão.
+6. A janela **Atribuir Macro** aparecerá automaticamente. Selecione `GerarResumo`.
+7. Clique em **OK**.
+8. Clique com o botão direito no botão e escolha **Editar Texto**.
+9. Altere o nome para **Gerar resumo**.
+
+A partir de agora, o botão executará o método `GerarResumo`.
+
+> Se a janela para atribuir a macro não aparecer, clique com o botão direito no botão e escolha **Atribuir Macro...**. Depois selecione `GerarResumo`.
+
+---
+
+## 6. Execute e teste
+
+1. Na aba **Entrada**, altere o nome e o valor em `B2` e `B3`.
+2. Clique no botão **Gerar resumo**.
+3. Abra a aba **Resumo** e confira o resultado.
 
 Teste, por exemplo:
 
@@ -93,7 +110,7 @@ O nome deve aparecer como `MARIA DA SILVA` e o valor final como `90`.
 
 ---
 
-## 6. Entendendo o código
+## 7. Entendendo o código
 
 | Trecho | O que faz |
 |---|---|
@@ -104,18 +121,6 @@ O nome deve aparecer como `MARIA DA SILVA` e o valor final como `90`.
 | `valor * 0.9` | Calcula o valor com 10% de desconto. |
 | `Now` | Obtém a data e a hora atuais. |
 | `Dim` | Cria uma variável para guardar uma informação. |
-
----
-
-## 7. Coloque um botão na planilha (opcional)
-
-1. Abra a guia **Desenvolvedor**. Se ela não aparecer, avise o professor.
-2. Clique em **Inserir > Botão (Controle de Formulário)**.
-3. Desenhe o botão na aba **Entrada**.
-4. Quando o Excel pedir uma macro, escolha `GerarResumo`.
-5. Troque o texto do botão para **Gerar resumo**.
-
-Agora não é necessário abrir o editor para executar a automação.
 
 ---
 
@@ -138,4 +143,4 @@ Seu desafio precisa ter pelo menos:
 
 ## Entrega
 
-Salve o arquivo `.xlsm` com a macro funcionando e mostre ao professor o seu botão ou a execução pelo editor VBA.
+Salve o arquivo `.xlsm` com a macro funcionando. Mostre ao professor o botão **Gerar resumo** e o resultado que ele produz na aba **Resumo**.
