@@ -4,12 +4,13 @@
 
 Nesta aula, você vai construir uma automação para registrar **reservas de equipamentos do laboratório**. A ideia é a mesma de uma venda com produtos: uma solicitação pode ter vários itens.
 
-Ao clicar em um botão, a macro deve pegar os dados da tela de lançamento e gravá-los em duas tabelas:
+Ao clicar em um botão, a macro deve pegar os dados da tela de lançamento e gravá-los em duas tabelas. Uma terceira tabela já existente funciona como catálogo:
 
 | Tabela | O que guarda | Ligação |
 |---|---|---|
 | `tblSolicitacoes` | uma linha para cada reserva | possui o `ID_Solicitacao` |
 | `tblItensSolicitacao` | uma linha para cada equipamento reservado | repete o mesmo `ID_Solicitacao` |
+| `tblEquipamentos` | catálogo de códigos e nomes dos equipamentos | é consultada pelo `Codigo_Equipamento` |
 
 Exemplo: a solicitação `RES-001` pode pedir um projetor e três notebooks. Ela aparece **uma vez** na primeira tabela e **duas vezes** na segunda.
 
@@ -33,7 +34,7 @@ O arquivo tem cinco abas:
 | `Tela_Lancamento` | é a tela que o usuário preenche |
 | `Solicitacoes` | receberá os dados principais de cada reserva |
 | `Itens_Solicitacao` | receberá cada equipamento da reserva |
-| `Cadastros` | contém as listas de equipamentos e turmas para as listas suspensas |
+| `Cadastros` | contém a `tblEquipamentos` e a lista de turmas |
 
 As células amarelas na tela de lançamento são os campos de preenchimento.
 
@@ -54,7 +55,7 @@ Na aba `Itens_Solicitacao`, os itens usam o mesmo ID:
 
 O `ID_Solicitacao` é a chave que permite saber a quais dados principais cada item pertence.
 
-## 2. Transforme as áreas de dados em Tabelas do Excel
+## 2. Transforme as áreas de lançamentos em Tabelas do Excel
 
 Vamos criar as duas tabelas que a macro usará.
 
@@ -69,18 +70,20 @@ Vamos criar as duas tabelas que a macro usará.
 
 > Os nomes precisam ser exatamente esses. O VBA usará os nomes para encontrar as tabelas, sem depender de uma linha específica.
 
+Na aba `Cadastros`, a terceira tabela já está pronta: `tblEquipamentos`. Ela é o catálogo oficial de códigos e nomes. Por isso, não crie equipamentos manualmente em `Itens_Solicitacao`: informe o código e deixe o Excel buscar o nome no catálogo.
+
 ## 3. Crie as listas suspensas
 
-Na aba `Cadastros`, existem duas listas que serão usadas na tela:
+Na aba `Cadastros`, existem os códigos da `tblEquipamentos` e a lista de turmas:
 
-- Equipamentos em `B6:B10`;
+- Códigos dos equipamentos em `A6:A10`;
 - Turmas em `D6:D10`.
 
 Para que a lista funcione em outra aba, crie dois nomes:
 
-1. Selecione `Cadastros!B6:B10`.
+1. Selecione `Cadastros!A6:A10`.
 2. Clique na **Caixa de Nome**, à esquerda da barra de fórmulas.
-3. Digite `listaEquipamentos` e pressione `Enter`.
+3. Digite `listaCodigosEquipamentos` e pressione `Enter`.
 4. Selecione `Cadastros!D6:D10`.
 5. Na Caixa de Nome, digite `listaTurmas` e pressione `Enter`.
 
@@ -90,8 +93,14 @@ Agora aplique a validação de dados:
 2. Vá em **Dados > Validação de Dados**.
 3. Em **Permitir**, escolha **Lista**.
 4. Em **Fonte**, escreva `=listaTurmas` e confirme.
-5. Selecione `B13:B20`.
-6. Repita o processo, mas use `=listaEquipamentos` como fonte.
+5. Selecione `A13:A20`.
+6. Repita o processo, mas use `=listaCodigosEquipamentos` como fonte.
+
+Na célula `B13`, insira a fórmula abaixo e copie até `B20`. Ela mostra o nome correspondente ao código selecionado:
+
+```excel
+=SEERRO(PROCV(A13;tblEquipamentos;2;FALSO);"")
+```
 
 Teste as setas de lista suspensa antes de continuar. Depois, acrescente uma turma ou um equipamento à aba `Cadastros` e ajuste o intervalo dos nomes para incluir o novo dado.
 
@@ -119,11 +128,11 @@ Na aba `Tela_Lancamento`, preencha:
 | B9 — Turma | `2A` |
 | B10 — Data de uso | `09/10/2026` |
 | A13 | `EQ-10` |
-| B13 | `Projetor` |
+| B13 | preenchido automaticamente como `Projetor` |
 | C13 | `1` |
 | D13 | `Usar cabo HDMI` |
 | A14 | `EQ-03` |
-| B14 | `Notebook` |
+| B14 | preenchido automaticamente como `Notebook` |
 | C14 | `3` |
 | D14 | `Carregados` |
 
@@ -224,7 +233,9 @@ Sub RegistrarSolicitacao()
             With novoItem.Range
                 .Cells(1, 1).Value = id
                 .Cells(1, 2).Value = Trim(wsTela.Cells(linha, "A").Value)
-                .Cells(1, 3).Value = Trim(wsTela.Cells(linha, "B").Value)
+                'O nome é buscado no catálogo tblEquipamentos pelo código.
+                .Cells(1, 3).FormulaR1C1 = _
+                    "=IFERROR(VLOOKUP(RC[-1],tblEquipamentos,2,FALSE),\"\")"
                 .Cells(1, 4).Value = wsTela.Cells(linha, "C").Value
                 .Cells(1, 5).Value = Trim(wsTela.Cells(linha, "D").Value)
             End With
@@ -233,7 +244,8 @@ Sub RegistrarSolicitacao()
 
     'Limpa a tela para o próximo lançamento
     wsTela.Range("B6:B10").ClearContents
-    wsTela.Range("A13:D20").ClearContents
+    wsTela.Range("A13:A20").ClearContents
+    wsTela.Range("C13:D20").ClearContents
 
     MsgBox "Solicitação " & id & " registrada com " & _
            quantidadeItens & " item(ns).", vbInformation
@@ -253,7 +265,7 @@ End Sub
 | `Cells(1, 1)` | indica uma célula da nova linha criada na tabela |
 | `ClearContents` | limpa os dados digitados, sem apagar a formatação |
 
-Perceba que a macro grava primeiro a solicitação e depois todos os itens. O mesmo `id` é enviado para as duas tabelas, criando a relação entre elas.
+Perceba que a macro grava primeiro a solicitação e depois todos os itens. O mesmo `id` é enviado para as duas tabelas, criando a relação entre elas. O código do equipamento também aponta para `tblEquipamentos`, que é a fonte única para o nome exibido.
 
 ## 9. Crie o botão
 
@@ -271,7 +283,7 @@ Perceba que a macro grava primeiro a solicitação e depois todos os itens. O me
 1. Volte à `Tela_Lancamento` com os dados de teste preenchidos.
 2. Clique em **Registrar solicitação**.
 3. Confira a aba `Solicitacoes`: deve existir uma linha com `RES-001`.
-4. Confira a aba `Itens_Solicitacao`: devem existir duas linhas com `RES-001`.
+4. Confira a aba `Itens_Solicitacao`: devem existir duas linhas com `RES-001`; os nomes dos equipamentos devem vir da tabela `tblEquipamentos`.
 5. Abra o `Dashboard`: as tabelas-resumo devem ser recalculadas. Os cartões mostrarão resultados somente depois que seu grupo criar as fórmulas.
 
 Resultado esperado após o teste:
