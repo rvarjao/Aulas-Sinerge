@@ -235,7 +235,7 @@ Sub RegistrarSolicitacao()
                 .Cells(1, 2).Value = Trim(wsTela.Cells(linha, "A").Value)
                 'O nome é buscado no catálogo tblEquipamentos pelo código.
                 .Cells(1, 3).FormulaR1C1 = _
-                    "=IFERROR(VLOOKUP(RC[-1],tblEquipamentos,2,FALSE),\"\")"
+                    "=IFERROR(VLOOKUP(RC[-1],tblEquipamentos,2,FALSE),"""")"
                 .Cells(1, 4).Value = wsTela.Cells(linha, "C").Value
                 .Cells(1, 5).Value = Trim(wsTela.Cells(linha, "D").Value)
             End With
