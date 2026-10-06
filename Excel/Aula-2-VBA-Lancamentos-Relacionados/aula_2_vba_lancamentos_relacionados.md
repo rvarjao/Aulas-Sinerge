@@ -326,3 +326,7 @@ Entregue o arquivo `.xlsm` com:
 - o código VBA comentado em pelo menos três partes.
 
 Nunca habilite macros de arquivos desconhecidos. Use macros somente de fontes confiáveis.
+
+O arquivo deve ser enviado pelo formulário:
+[1oAno - Atividade com Excel/VBA](https://docs.google.com/forms/d/1qwFNKbNWv3laylEkCZ8YkeUtYc2s1zaAQ24hYwKXefU/edit)
+
