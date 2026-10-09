@@ -11,11 +11,17 @@
 ```excel
 =SOMASES(Movimentacoes!$D$2:$D$1000;Movimentacoes!$B$2:$B$1000;A2;Movimentacoes!$C$2:$C$1000;"Entrada")-SOMASES(Movimentacoes!$D$2:$D$1000;Movimentacoes!$B$2:$B$1000;A2;Movimentacoes!$C$2:$C$1000;"Saída")
 ```
-A planilha fornecida já contém a fórmula equivalente, armazenada no padrão interno do Excel.
+**A planilha inicial não contém fórmulas:** os alunos devem criar esta fórmula e a de situação do estoque.
+
+## Arquivos iniciais
+
+- `Lancamentos.csv`, `Produtos.csv` e `Movimentacoes.csv` são tabelas auxiliares em CSV, sem fórmulas, disponíveis nesta pasta do GitHub.
+- **Para a atividade, utilize a planilha Excel de três abas** fornecida pelo professor. Os CSVs não substituem a planilha `.xlsx` e podem ser importados para o Excel, se necessário.
+- A entrega continua no mesmo formulário da atividade anterior, na nova questão criada pelo professor.
 
 ## Aula 1: lançamentos guiados
 1. Abra o arquivo e salve como **.xlsm**.
-2. Observe que os três saldos iniciais resultam de movimentações de entrada, não de valores digitados em Produtos.
+2. Observe as entradas iniciais na aba Movimentacoes. Os saldos em Produtos estão vazios: crie as fórmulas para calculá-los.
 3. No editor VBA (Alt+F11), crie um módulo e uma macro `RegistrarMovimentacao`.
 4. Leia código, tipo e quantidade das células B4, B5 e B6 da aba Lancamentos.
 5. Procure o código na aba Produtos usando `For` e `If`. Se não existir, mostre `MsgBox` e encerre.
