@@ -13,11 +13,12 @@
 ```
 **A planilha inicial não contém fórmulas:** os alunos devem criar esta fórmula e a de situação do estoque.
 
-## Arquivos iniciais
+## Arquivo da atividade
 
-- `Lancamentos.csv`, `Produtos.csv` e `Movimentacoes.csv` são tabelas auxiliares em CSV, sem fórmulas, disponíveis nesta pasta do GitHub.
-- **Para a atividade, utilize a planilha Excel de três abas** fornecida pelo professor. Os CSVs não substituem a planilha `.xlsx` e podem ser importados para o Excel, se necessário.
-- A entrega continua no mesmo formulário da atividade anterior, na nova questão criada pelo professor.
+- Utilize o arquivo Excel `.xlsx` disponibilizado nesta pasta pelo professor, contendo as três abas **Lancamentos**, **Produtos** e **Movimentacoes**.
+- A planilha é o ponto de partida: **não contém as fórmulas de estoque**, que deverão ser desenvolvidas pelos alunos conforme as instruções abaixo.
+- Trabalhe no **Excel desktop** e salve uma cópia como `.xlsm` antes de programar as macros.
+- A entrega será feita no **mesmo formulário da atividade anterior**, na nova questão criada pelo professor.
 
 ## Aula 1: lançamentos guiados
 1. Abra o arquivo e salve como **.xlsm**.
