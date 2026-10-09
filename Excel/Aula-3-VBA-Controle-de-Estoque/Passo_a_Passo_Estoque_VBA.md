@@ -1,61 +1,54 @@
-# Aula prática — Controle de estoque com Excel e VBA
+# Aula — Controle de estoque por movimentações (Excel + VBA)
 
-**Turma:** 1º ano · **Duração:** 2 aulas de 50 minutos
+## Estrutura das três abas
+1. **Lancamentos** (primeira aba): B4 código, B5 tipo (Entrada/Saída), B6 quantidade, B7 saldo disponível calculado.
+2. **Produtos**: A código, B descrição, C mínimo, D estoque atual **calculado**, E situação.
+3. **Movimentacoes**: A data, B código, C tipo, D quantidade. Toda entrada, inclusive estoque inicial, deve constar aqui.
 
-## Objetivo
-Construir um sistema com duas abas relacionadas pelo código do produto:
-- **Produtos:** Código, Produto, Estoque atual, Estoque mínimo.
-- **Movimentacoes:** Data, Código produto, Tipo (Entrada/Saída), Quantidade.
+## Regra central
+**Nunca escreva no saldo da aba Produtos via VBA.** O saldo é derivado do histórico:
 
-Toda entrada ou saída deve atualizar o estoque e registrar uma linha em Movimentacoes.
+```excel
+=SOMASES(Movimentacoes!$D$2:$D$1000;Movimentacoes!$B$2:$B$1000;A2;Movimentacoes!$C$2:$C$1000;"Entrada")-SOMASES(Movimentacoes!$D$2:$D$1000;Movimentacoes!$B$2:$B$1000;A2;Movimentacoes!$C$2:$C$1000;"Saída")
+```
+A planilha fornecida já contém a fórmula equivalente, armazenada no padrão interno do Excel.
 
-## Preparação
-1. Abra a planilha de controle de estoque no Excel desktop.
-2. Salve como **Pasta de Trabalho Habilitada para Macro (.xlsm)**.
-3. Ative a guia Desenvolvedor e pressione **Alt+F11**.
-4. Selecione Inserir → Módulo.
+## Aula 1: lançamentos guiados
+1. Abra o arquivo e salve como **.xlsm**.
+2. Observe que os três saldos iniciais resultam de movimentações de entrada, não de valores digitados em Produtos.
+3. No editor VBA (Alt+F11), crie um módulo e uma macro `RegistrarMovimentacao`.
+4. Leia código, tipo e quantidade das células B4, B5 e B6 da aba Lancamentos.
+5. Procure o código na aba Produtos usando `For` e `If`. Se não existir, mostre `MsgBox` e encerre.
+6. Verifique quantidade numérica, inteira e maior que zero. Para saída, compare com o saldo calculado na coluna D de Produtos.
+7. Descubra a próxima linha livre de Movimentacoes usando `Cells(Rows.Count,1).End(xlUp).Row + 1`.
+8. Grave **somente** data, código, tipo e quantidade na aba Movimentacoes.
+9. Teste se o estoque em Produtos mudou automaticamente, sem atribuição VBA à coluna D.
+10. Na aba Lancamentos, associe a macro a um botão de formulário chamado **Registrar movimentação**.
 
-## Aula 1 — Busca e entrada
-1. Analise as tabelas e explique a relação entre Código e Código produto.
-2. Crie uma macro com `InputBox` para solicitar o código.
-3. Use `For ... Next` e `If ... Then` para localizar o produto na aba Produtos.
-4. Solicite uma quantidade positiva e some ao estoque.
-5. Encontre a próxima linha vazia da aba Movimentacoes e registre data, código, tipo Entrada e quantidade.
-6. Teste código inexistente e quantidade zero/negativa.
-
-### Exemplo de busca
+### Esqueleto para completar
 ```vb
-Sub BuscarProduto()
-    Dim codigo As Long, linha As Long, ultima As Long
-    codigo = CLng(InputBox("Código do produto:"))
-    ultima = Sheets("Produtos").Cells(Sheets("Produtos").Rows.Count, 1).End(xlUp).Row
-    For linha = 2 To ultima
-        If Sheets("Produtos").Cells(linha, 1).Value = codigo Then
-            MsgBox Sheets("Produtos").Cells(linha, 2).Value
-            Exit Sub
-        End If
-    Next linha
-    MsgBox "Produto não encontrado."
+Sub RegistrarMovimentacao()
+    Dim codigo As Long, qtd As Long, tipo As String
+    Dim linha As Long, ultima As Long, destino As Long
+    Dim encontrada As Boolean
+    ' TODO: ler e validar B4, B5, B6 da aba Lancamentos
+    ' TODO: procurar código em Produtos
+    ' TODO: se for Saída, validar qtd <= estoque atual
+    ' TODO: gravar nova linha em Movimentacoes
+    ' NÃO atualizar Produtos!D diretamente
 End Sub
 ```
 
-## Aula 2 — Saída, cadastro e testes
-1. Implemente a saída de estoque, impedindo venda maior que o saldo.
-2. Registre a saída na aba Movimentacoes.
-3. Crie um botão para cada operação e associe a macro.
-4. Desafio: cadastrar produto em nova linha, sem permitir código duplicado.
-5. Desafio extra: destacar produtos abaixo do estoque mínimo.
-
-## Testes obrigatórios
-- Entrada válida aumenta o saldo e gera histórico.
-- Saída válida diminui o saldo e gera histórico.
-- Produto inexistente não altera as tabelas.
-- Quantidade negativa ou zero é rejeitada.
-- Saída maior que o saldo é rejeitada.
-- Código duplicado não é cadastrado.
+## Aula 2: testes e melhorias
+- Entrada válida: uma linha nova e saldo maior.
+- Saída válida: uma linha nova e saldo menor.
+- Saída maior que estoque: nenhuma linha nova.
+- Código inexistente ou quantidade zero/negativa: nenhuma linha nova.
+- Desafio: limpar os campos após gravar, sem apagar fórmulas.
+- Desafio extra: relatório de produtos abaixo do mínimo.
 
 ## Entrega
-Use **o mesmo formulário da atividade anterior**, na nova questão disponibilizada pelo professor. Anexe a planilha final em **.xlsm** e descreva brevemente os testes realizados. Não envie por e-mail nem abra outro formulário.
+Entregar o arquivo **.xlsm** no **mesmo formulário usado na atividade anterior**, na nova questão criada pelo professor. Incluir uma breve descrição dos testes. Não criar formulário novo.
 
 ## Discussão
-Se o estoque atual fosse removido da tabela Produtos, seria possível reconstruí-lo pelo histórico? Quais dados iniciais seriam necessários?
+Por que o estoque é um dado derivado? Como reconstituir o saldo após uma falha? O que acontece se alguém editar ou apagar uma movimentação antiga?
