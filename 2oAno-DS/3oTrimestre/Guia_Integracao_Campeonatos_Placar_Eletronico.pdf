@@ -3,7 +3,7 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R] /Count 3 >>
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R 12 0 R] /Count 4 >>
 endobj
 3 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
@@ -12,262 +12,214 @@ endobj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
 endobj
 5 0 obj
-<< /Producer (Guia Escolar) >>
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
 endobj
 6 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 7 0 R >>
 endobj
 7 0 obj
-<< /Length 2852 >>
+<< /Length 3025 >>
 stream
-BT
-/F2 16 Tf
-48 794 Td
-(INTEGRACAO: CAMPEONATOS E PLACAR ELETRONICO) Tj
-/F1 10 Tf
-1 0 0 1 48 770 Tm
-(2o Ano - Desenvolvimento de Sistemas | 3o trimestre | 19/10/2026) Tj
-1 0 0 1 48 753 Tm
-(Guia para os grupos de Gerenciamento de Campeonatos e Placar Eletronico.) Tj
-1 0 0 1 48 736 Tm
-(Repositorio-base: https://github.com/rvarjao/placar-eletronico-api) Tj
-1 0 0 1 48 710 Tm
-(1. OBJETIVO E ARQUITETURA) Tj
-1 0 0 1 48 693 Tm
-(Dois sistemas independentes trocam informacoes por API REST HTTP/JSON.) Tj
-1 0 0 1 48 676 Tm
-(Campeonatos cria partidas, solicita um placar e consulta o resultado por ID.) Tj
-1 0 0 1 48 659 Tm
-(Placar administra resultados, tempo, faltas, etapas e a interface visual.) Tj
-1 0 0 1 48 642 Tm
-(Cada grupo usa seu codigo, projeto PostgreSQL e credenciais do Supabase.) Tj
-1 0 0 1 48 625 Tm
-(Uma maquina da escola executa as APIs Flask em Docker na rede local.) Tj
-1 0 0 1 48 608 Tm
-(O servidor precisa de internet para acessar o Supabase e portas liberadas.) Tj
-1 0 0 1 48 591 Tm
-(Credenciais ficam no backend \(.env\), nunca no navegador ou no GitHub.) Tj
-1 0 0 1 48 565 Tm
-(2. REPOSITORIO BASE - SEM LOGICA IMPLEMENTADA) Tj
-1 0 0 1 48 548 Tm
-(https://github.com/rvarjao/placar-eletronico-api) Tj
-1 0 0 1 48 531 Tm
-(O projeto ja traz app/routes/placares.py, services/, models/, repositories/,) Tj
-1 0 0 1 48 514 Tm
-(Dockerfile, compose.yaml, .env.example, README e arquivos em docs/.) Tj
-1 0 0 1 48 497 Tm
-(As rotas estao declaradas e retornam 501 \(Not Implemented\).) Tj
-1 0 0 1 48 480 Tm
-(Os estudantes devem desenvolver validacoes, acesso ao banco e respostas.) Tj
-1 0 0 1 48 454 Tm
-(3. ENDPOINTS) Tj
-1 0 0 1 48 437 Tm
-(POST  /api/placares        cria placar \(HTTP 201, retorna ID\)) Tj
-1 0 0 1 48 420 Tm
-(GET   /api/placares/{id}   consulta estado \(HTTP 200 ou 404\)) Tj
-1 0 0 1 48 403 Tm
-(PATCH /api/placares/{id}   atualiza campos recebidos \(HTTP 200\)) Tj
-1 0 0 1 48 386 Tm
-(Base ilustrativa: http://192.168.1.100:5001/api) Tj
-1 0 0 1 48 369 Tm
-(Escrever os nomes de campos JSON em snake_case.) Tj
-1 0 0 1 48 343 Tm
-(4. CAMPOS DO PLACAR) Tj
-1 0 0 1 48 326 Tm
-(id: inteiro automatico gerado e persistido pela API.) Tj
-1 0 0 1 48 309 Tm
-(nome_equipe_a, nome_equipe_b: textos obrigatorios.) Tj
-1 0 0 1 48 292 Tm
-(modalidade: texto validado \(futebol, futsal, basquete, volei, handebol, outro\).) Tj
-1 0 0 1 48 275 Tm
-(status: texto validado \(nao_iniciado, em_andamento, pausado, finalizado\).) Tj
-1 0 0 1 48 258 Tm
-(tempo: inteiro em segundos; tipo de cronometro depende da modalidade.) Tj
-1 0 0 1 48 241 Tm
-(etapa: texto livre \(1o tempo, 2o tempo, 3o quarto, 4o set etc.\).) Tj
-1 0 0 1 48 224 Tm
-(pontos_equipe_a/b e faltas_equipe_a/b: inteiros nao negativos.) Tj
-1 0 0 1 48 207 Tm
-(detalhes: objeto JSON para dados especificos \(ex.: sets vencidos\).) Tj
-1 0 0 1 48 36 Tm
-(Desenvolvimento de Sistemas | Pagina 1) Tj
-ET
+0.075 0.16 0.27 rg 0 709 595 133 re f
+0.25 0.72 0.78 rg 40 766 31 4 re f
+BT 1 1 1 rg /F2 26 Tf 1 0 0 1 40 738 Tm (Guia de integração) Tj ET
+BT 0.76 0.86 0.94 rg /F1 13 Tf 1 0 0 1 40 717 Tm (Campeonatos + placar eletrônico) Tj ET
+BT 0.2 0.48 0.60 rg /F2 8.7 Tf 1 0 0 1 40 681 Tm (DESENVOLVIMENTO DE SISTEMAS  |  2º ANO  |  3º TRIMESTRE) Tj ET
+BT 0.07 0.27 0.39 rg /F2 14 Tf 1 0 0 1 40 643 Tm (Objetivo da atividade) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 620 Tm (Construir dois sistemas independentes que se comunicam por API REST. O gerenciamento de) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 606 Tm (campeonatos cria uma partida e acompanha o resultado; o placar eletrônico gerencia pontuação,) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 592 Tm (tempo, faltas e etapas.) Tj ET
+BT 0.07 0.27 0.39 rg /F2 14 Tf 1 0 0 1 40 558 Tm (Arquitetura definida) Tj ET
+0.08 0.29 0.42 rg 40 519 515 24 re f
+BT 1 1 1 rg /F2 8.4 Tf 1 0 0 1 48 529 Tm (Componente) Tj ET
+BT 1 1 1 rg /F2 8.3 Tf 1 0 0 1 238 529 Tm (Responsabilidade) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 505 Tm (Campeonatos) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 505 Tm (Cadastra partida, guarda o ID e consulta resultado) Tj ET
+0.95 0.97 0.98 rg 40 471 515 24 re f
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 481 Tm (Placar \(Flask\)) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 481 Tm (Disponibiliza POST, GET e PATCH) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 457 Tm (Docker na escola) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 457 Tm (Executa a API na rede local) Tj ET
+0.95 0.97 0.98 rg 40 423 515 24 re f
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 433 Tm (Supabase) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 433 Tm (PostgreSQL, com bancos separados para os grupos) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 409 Tm (GitHub) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 409 Tm (Versionamento do código e documentação) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 375 Tm (A máquina com Docker deve ter IP estável/reserva DHCP e permitir conexões entre computadores. É) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 361 Tm (necessária internet para acessar o Supabase; as credenciais devem ficar somente no backend.) Tj ET
+BT 0.07 0.27 0.39 rg /F2 14 Tf 1 0 0 1 40 327 Tm (Repositório-base) Tj ET
+BT 0.06 0.40 0.62 rg /F2 11 Tf 1 0 0 1 40 304 Tm (github.com/rvarjao/placar-eletronico-api) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 280 Tm (O projeto já contém a estrutura Flask, arquivos de rotas, modelos, serviços e repositórios, Docker) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 266 Tm (e documentação. As rotas devolvem HTTP 501 \(sem implementação\), para os estudantes desenvolverem a) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 252 Tm (lógica.) Tj ET
+0.83 0.87 0.9 rg 40 41 515 1 re f
+BT 0.45 0.5 0.55 rg /F1 8 Tf 1 0 0 1 40 25 Tm (Aulas-Sinerge  ·  Integração de Sistemas  ·  19/10/2026) Tj ET
+BT 0.45 0.5 0.55 rg /F1 8 Tf 1 0 0 1 514 25 Tm (1 / 4) Tj ET
 endstream
 endobj
 8 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 9 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
 endobj
 9 0 obj
-<< /Length 2365 >>
+<< /Length 3879 >>
 stream
-BT
-/F2 16 Tf
-48 794 Td
-(ROTAS E CONTRATO JSON) Tj
-/F1 10 Tf
-1 0 0 1 48 770 Tm
-(5. CRIAR PLACAR - POST /api/placares) Tj
-1 0 0 1 48 753 Tm
-(Entrada minima recomendada:) Tj
-1 0 0 1 48 736 Tm
-({ "nome_equipe_a": "Brasil", "nome_equipe_b": "Argentina",) Tj
-1 0 0 1 48 719 Tm
-(  "modalidade": "futebol", "etapa": "1o tempo" }) Tj
-1 0 0 1 48 702 Tm
-(Status inicial = nao_iniciado; tempo, pontos e faltas = 0.) Tj
-1 0 0 1 48 685 Tm
-(Resposta esperada HTTP 201 Created:) Tj
-1 0 0 1 48 668 Tm
-({ "id": 15, "nome_equipe_a": "Brasil",) Tj
-1 0 0 1 48 651 Tm
-(  "nome_equipe_b": "Argentina", "modalidade": "futebol",) Tj
-1 0 0 1 48 634 Tm
-(  "status": "nao_iniciado", "tempo": 0, "etapa": "1o tempo",) Tj
-1 0 0 1 48 617 Tm
-(  "pontos_equipe_a": 0, "pontos_equipe_b": 0,) Tj
-1 0 0 1 48 600 Tm
-(  "faltas_equipe_a": 0, "faltas_equipe_b": 0, "detalhes": {} }) Tj
-1 0 0 1 48 574 Tm
-(6. CONSULTAR PLACAR - GET /api/placares/15) Tj
-1 0 0 1 48 557 Tm
-(Retorna o mesmo objeto, com valores atuais. Exemplo HTTP 200:) Tj
-1 0 0 1 48 540 Tm
-({ "id": 15, "nome_equipe_a": "Brasil",) Tj
-1 0 0 1 48 523 Tm
-(  "nome_equipe_b": "Argentina", "modalidade": "futebol",) Tj
-1 0 0 1 48 506 Tm
-(  "status": "em_andamento", "tempo": 2520, "etapa": "2o tempo",) Tj
-1 0 0 1 48 489 Tm
-(  "pontos_equipe_a": 2, "pontos_equipe_b": 1,) Tj
-1 0 0 1 48 472 Tm
-(  "faltas_equipe_a": 3, "faltas_equipe_b": 5, "detalhes": {} }) Tj
-1 0 0 1 48 455 Tm
-(ID inexistente => HTTP 404 com mensagem JSON de erro.) Tj
-1 0 0 1 48 429 Tm
-(7. ATUALIZAR PLACAR - PATCH /api/placares/15) Tj
-1 0 0 1 48 412 Tm
-(Operacao do sistema do placar; exige autorizacao e validacao.) Tj
-1 0 0 1 48 395 Tm
-(Enviar somente os campos alterados:) Tj
-1 0 0 1 48 378 Tm
-({ "pontos_equipe_a": 3, "tempo": 2700, "etapa": "2o tempo" }) Tj
-1 0 0 1 48 361 Tm
-(Responder HTTP 200 com o objeto completo ja atualizado.) Tj
-1 0 0 1 48 344 Tm
-(Nao permitir alterar o ID por PATCH. Validar pontuacoes e status.) Tj
-1 0 0 1 48 318 Tm
-(8. TRATAMENTO DE ERROS) Tj
-1 0 0 1 48 301 Tm
-(201: criado; 200: consulta/atualizacao; 400/422: JSON invalido.) Tj
-1 0 0 1 48 284 Tm
-(401/403: sem autorizacao; 404: placar inexistente.) Tj
-1 0 0 1 48 267 Tm
-(500: erro inesperado; 503: dependencia indisponivel.) Tj
-1 0 0 1 48 250 Tm
-(Erros devem ter JSON coerente. Nunca expor senhas ou detalhes do banco.) Tj
-1 0 0 1 48 36 Tm
-(Desenvolvimento de Sistemas | Pagina 2) Tj
-ET
+0.075 0.16 0.27 rg 0 709 595 133 re f
+0.25 0.72 0.78 rg 40 766 31 4 re f
+BT 1 1 1 rg /F2 26 Tf 1 0 0 1 40 738 Tm (Contrato da API) Tj ET
+BT 0.76 0.86 0.94 rg /F1 13 Tf 1 0 0 1 40 717 Tm (Campos e valores padronizados) Tj ET
+BT 0.07 0.27 0.39 rg /F2 14 Tf 1 0 0 1 40 673 Tm (Estrutura de dados) Tj ET
+0.08 0.29 0.42 rg 40 634 515 24 re f
+BT 1 1 1 rg /F2 8.4 Tf 1 0 0 1 48 644 Tm (Campo) Tj ET
+BT 1 1 1 rg /F2 8.3 Tf 1 0 0 1 238 644 Tm (Tipo / regra) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 620 Tm (id) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 620 Tm (inteiro gerado no servidor) Tj ET
+0.95 0.97 0.98 rg 40 586 515 24 re f
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 596 Tm (nome_equipe_a / nome_equipe_b) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 596 Tm (textos obrigatórios) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 572 Tm (modalidade) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 572 Tm (texto validado: futebol, futsal, basquete, volei,) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 560 Tm (handebol, outro) Tj ET
+0.95 0.97 0.98 rg 40 525 515 24 re f
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 535 Tm (status) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 535 Tm (nao_iniciado, em_andamento, pausado, finalizado) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 511 Tm (tempo) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 511 Tm (inteiro em segundos, maior ou igual a zero) Tj ET
+0.95 0.97 0.98 rg 40 477 515 24 re f
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 487 Tm (etapa) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 487 Tm (texto: 1º tempo, 3º quarto, 4º set, intervalo etc.) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 463 Tm (pontos_equipe_a / pontos_equipe_b) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 463 Tm (inteiros não negativos) Tj ET
+0.95 0.97 0.98 rg 40 403 515 37 re f
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 426 Tm (faltas_equipe_a / faltas_equipe_b) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 426 Tm (inteiros não negativos) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 389 Tm (detalhes) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 389 Tm (objeto JSON com informações específicas do esporte) Tj ET
+BT 0.07 0.27 0.39 rg /F2 14 Tf 1 0 0 1 40 347 Tm (Rotas obrigatórias) Tj ET
+0.08 0.29 0.42 rg 40 308 515 24 re f
+BT 1 1 1 rg /F2 8.4 Tf 1 0 0 1 48 318 Tm (Método e caminho) Tj ET
+BT 1 1 1 rg /F2 8.3 Tf 1 0 0 1 238 318 Tm (Comportamento) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 294 Tm (POST /api/placares) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 294 Tm (Cria o placar; retorna 201 e o ID) Tj ET
+0.95 0.97 0.98 rg 40 260 515 24 re f
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 270 Tm (GET /api/placares/{id}) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 270 Tm (Retorna estado atual; 200 ou 404) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 246 Tm (PATCH /api/placares/{id}) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 246 Tm (Atualiza campos enviados; retorna 200) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 212 Tm (Sugestão: usar VARCHAR com valores validados na aplicação para modalidade e status; deixar etapa) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 198 Tm (como texto livre. O grupo do placar responde pelos controles da partida.) Tj ET
+BT 0.07 0.27 0.39 rg /F2 14 Tf 1 0 0 1 40 164 Tm (Tratamento de erros) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 141 Tm (201 criado, 200 sucesso, 400/422 entrada inválida, 401/403 sem autorização, 404 não encontrado,) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 127 Tm (500 erro inesperado, 503 indisponibilidade do serviço. Respostas de erro devem ser JSON.) Tj ET
+0.83 0.87 0.9 rg 40 41 515 1 re f
+BT 0.45 0.5 0.55 rg /F1 8 Tf 1 0 0 1 40 25 Tm (Aulas-Sinerge  ·  Integração de Sistemas  ·  19/10/2026) Tj ET
+BT 0.45 0.5 0.55 rg /F1 8 Tf 1 0 0 1 514 25 Tm (2 / 4) Tj ET
 endstream
 endobj
 10 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 11 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 11 0 R >>
 endobj
 11 0 obj
-<< /Length 2909 >>
+<< /Length 3075 >>
 stream
-BT
-/F2 16 Tf
-48 794 Td
-(INTEGRACAO, INTERFACES E ENTREGAS) Tj
-/F1 10 Tf
-1 0 0 1 48 770 Tm
-(9. FLUXO DE INTEGRACAO - POLLING) Tj
-1 0 0 1 48 753 Tm
-(1\) Campeonatos cadastra a partida e executa POST /api/placares.) Tj
-1 0 0 1 48 736 Tm
-(2\) Salva o ID retornado como placar_id no proprio banco.) Tj
-1 0 0 1 48 719 Tm
-(3\) Consulta GET /api/placares/{id} aproximadamente a cada 5 segundos.) Tj
-1 0 0 1 48 702 Tm
-(4\) Mostra pontos, tempo, etapa, faltas e detalhes na sua interface.) Tj
-1 0 0 1 48 685 Tm
-(5\) Ao receber status finalizado, para o polling e registra resultado final.) Tj
-1 0 0 1 48 668 Tm
-(Em falha/timeout, mostrar aviso e tentar novamente, sem criar outro placar.) Tj
-1 0 0 1 48 651 Tm
-(Para fins didaticos, usar polling; webhook e WebSocket nao sao exigidos.) Tj
-1 0 0 1 48 625 Tm
-(10. INTERFACES VISUAIS POR MODALIDADE) Tj
-1 0 0 1 48 608 Tm
-(Primeiro criar um placar generico; depois reutilizar componentes e) Tj
-1 0 0 1 48 591 Tm
-(adaptar layouts por modalidade sem duplicar toda a aplicacao.) Tj
-1 0 0 1 48 574 Tm
-(Futebol/futsal: gols, 1o/2o tempo, cronometro crescente; faltas se couber.) Tj
-1 0 0 1 48 557 Tm
-(Basquete: pontos, quartos, cronometro regressivo e faltas.) Tj
-1 0 0 1 48 540 Tm
-(Volei: pontos do set atual, sets vencidos e etapa; relogio opcional.) Tj
-1 0 0 1 48 523 Tm
-(No volei, pontos_equipe_a/b representam pontos do set em andamento.) Tj
-1 0 0 1 48 506 Tm
-(Exemplo detalhes: { "sets_equipe_a": 2, "sets_equipe_b": 1 }) Tj
-1 0 0 1 48 489 Tm
-(O sistema de campeonatos deve interpretar esses dados corretamente.) Tj
-1 0 0 1 48 463 Tm
-(11. ETAPAS PROPOSTAS) Tj
-1 0 0 1 48 446 Tm
-(1. Fazer fork do projeto base e estudar o contrato JSON.) Tj
-1 0 0 1 48 429 Tm
-(2. Modelar tabelas, configurar Supabase e testar conexao pelo backend.) Tj
-1 0 0 1 48 412 Tm
-(3. Implementar POST, GET e PATCH, validacoes e tratamento de erros.) Tj
-1 0 0 1 48 395 Tm
-(4. Criar controles e tela de visualizacao do placar generico.) Tj
-1 0 0 1 48 378 Tm
-(5. Integrar os dois projetos pela URL da rede local.) Tj
-1 0 0 1 48 361 Tm
-(6. Especializar a interface para futebol, basquete e volei.) Tj
-1 0 0 1 48 344 Tm
-(7. Criar testes automatizados e demonstrar partida ate finalizacao.) Tj
-1 0 0 1 48 318 Tm
-(12. CRITERIOS DE ACEITACAO) Tj
-1 0 0 1 48 301 Tm
-(POST deve retornar ID persistente; GET refletir mudancas ou retornar 404.) Tj
-1 0 0 1 48 284 Tm
-(PATCH deve validar dados e impedir alteracoes nao autorizadas.) Tj
-1 0 0 1 48 267 Tm
-(Campeonatos armazena ID e acessa somente a API, nao o banco alheio.) Tj
-1 0 0 1 48 250 Tm
-(As interfaces devem respeitar a modalidade e exibir resultado correto.) Tj
-1 0 0 1 48 233 Tm
-(Testar indisponibilidade de rede/Supabase e documentar o comportamento.) Tj
-1 0 0 1 48 207 Tm
-(DOCUMENTACAO COMPLEMENTAR) Tj
-1 0 0 1 48 190 Tm
-(https://github.com/rvarjao/placar-eletronico-api/tree/main/docs) Tj
-1 0 0 1 48 36 Tm
-(Desenvolvimento de Sistemas | Pagina 3) Tj
-ET
+0.075 0.16 0.27 rg 0 709 595 133 re f
+0.25 0.72 0.78 rg 40 766 31 4 re f
+BT 1 1 1 rg /F2 26 Tf 1 0 0 1 40 738 Tm (Exemplos de requisição) Tj ET
+BT 0.76 0.86 0.94 rg /F1 13 Tf 1 0 0 1 40 717 Tm (Criar, consultar e atualizar) Tj ET
+BT 0.07 0.27 0.39 rg /F2 14 Tf 1 0 0 1 40 673 Tm (POST /api/placares - criação) Tj ET
+0.93 0.96 0.98 rg 40 558 515 98 re f
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 640 Tm ({) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 627 Tm (  "nome_equipe_a": "Brasil",) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 614 Tm (  "nome_equipe_b": "Argentina",) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 601 Tm (  "modalidade": "futebol",) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 588 Tm (  "etapa": "1º tempo") Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 575 Tm (}) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 554 Tm (Resposta HTTP 201: a API devolve o objeto com id \(ex.: 15\), status nao_iniciado, tempo 0,) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 540 Tm (pontuações 0, faltas 0 e detalhes {}. A aplicação de campeonatos guarda esse ID em sua própria) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 526 Tm (base.) Tj ET
+BT 0.07 0.27 0.39 rg /F2 14 Tf 1 0 0 1 40 492 Tm (GET /api/placares/15 - consulta) Tj ET
+0.93 0.96 0.98 rg 40 273 515 202 re f
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 459 Tm ({) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 446 Tm (  "id": 15,) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 433 Tm (  "nome_equipe_a": "Brasil",) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 420 Tm (  "nome_equipe_b": "Argentina",) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 407 Tm (  "modalidade": "futebol",) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 394 Tm (  "status": "em_andamento",) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 381 Tm (  "tempo": 2520,) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 368 Tm (  "etapa": "2º tempo",) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 355 Tm (  "pontos_equipe_a": 2,) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 342 Tm (  "pontos_equipe_b": 1,) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 329 Tm (  "faltas_equipe_a": 3,) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 316 Tm (  "faltas_equipe_b": 5,) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 303 Tm (  "detalhes": {}) Tj ET
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 290 Tm (}) Tj ET
+BT 0.07 0.27 0.39 rg /F2 14 Tf 1 0 0 1 40 261 Tm (PATCH /api/placares/15 - atualização) Tj ET
+0.93 0.96 0.98 rg 40 211 515 33 re f
+BT 0.10 0.25 0.39 rg /F3 9 Tf 1 0 0 1 54 228 Tm ({ "pontos_equipe_a": 3, "tempo": 2700, "etapa": "2º tempo" }) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 207 Tm (A rota PATCH recebe só os campos alterados, valida as alterações e responde com o objeto completo) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 193 Tm (atualizado. O ID não pode ser modificado.) Tj ET
+0.83 0.87 0.9 rg 40 41 515 1 re f
+BT 0.45 0.5 0.55 rg /F1 8 Tf 1 0 0 1 40 25 Tm (Aulas-Sinerge  ·  Integração de Sistemas  ·  19/10/2026) Tj ET
+BT 0.45 0.5 0.55 rg /F1 8 Tf 1 0 0 1 514 25 Tm (3 / 4) Tj ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 3043 >>
+stream
+0.075 0.16 0.27 rg 0 709 595 133 re f
+0.25 0.72 0.78 rg 40 766 31 4 re f
+BT 1 1 1 rg /F2 26 Tf 1 0 0 1 40 738 Tm (Comunicação e interfaces) Tj ET
+BT 0.76 0.86 0.94 rg /F1 13 Tf 1 0 0 1 40 717 Tm (Integração entre os dois grupos) Tj ET
+BT 0.07 0.27 0.39 rg /F2 14 Tf 1 0 0 1 40 673 Tm (Fluxo didático por polling) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 49 650 Tm (1. Campeonatos cadastra a partida e faz POST na API do placar.) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 49 624 Tm (2. O placar retorna o ID; campeonatos salva placar_id localmente.) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 49 598 Tm (3. Campeonatos executa GET /api/placares/{id} a cada 5 segundos.) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 49 572 Tm (4. Exibe os dados retornados e interrompe as consultas quando status = finalizado.) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 49 546 Tm (5. Em falha de rede, mostra aviso e tenta novamente; não cria outro placar automaticamente.) Tj ET
+BT 0.07 0.27 0.39 rg /F2 14 Tf 1 0 0 1 40 512 Tm (Interface genérica + layouts por modalidade) Tj ET
+0.08 0.29 0.42 rg 40 473 515 24 re f
+BT 1 1 1 rg /F2 8.4 Tf 1 0 0 1 48 483 Tm (Modalidade) Tj ET
+BT 1 1 1 rg /F2 8.3 Tf 1 0 0 1 238 483 Tm (Elementos principais) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 459 Tm (Futebol e futsal) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 459 Tm (Gols, 1º/2º tempo, cronômetro crescente e faltas) Tj ET
+0.95 0.97 0.98 rg 40 425 515 24 re f
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 435 Tm (Basquete) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 435 Tm (Pontos, quartos, tempo regressivo e faltas) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.4 Tf 1 0 0 1 48 411 Tm (Vôlei) Tj ET
+BT 0.16 0.22 0.28 rg /F1 8.3 Tf 1 0 0 1 238 411 Tm (Pontos do set atual, sets vencidos e etapa) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 377 Tm (No vôlei, pontos_equipe_a/b representam pontos do set em andamento. Os sets vencidos podem ficar) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 363 Tm (em detalhes: {"sets_equipe_a":2,"sets_equipe_b":1}. Não é necessário criar aplicações distintas) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 349 Tm (por modalidade: reutilizar componentes e adaptar a interface.) Tj ET
+BT 0.07 0.27 0.39 rg /F2 14 Tf 1 0 0 1 40 315 Tm (Etapas e critérios de entrega) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 292 Tm (Fazer fork, modelar o Supabase, implementar rotas e testes, desenvolver interface genérica,) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 278 Tm (integrar por HTTP e especializar modalidades. Demonstrar criação, atualização, consulta,) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 264 Tm (encerramento e tratamento de erros. O grupo de campeonatos não deve acessar diretamente o banco do) Tj ET
+BT 0.18 0.23 0.30 rg /F1 9.2 Tf 1 0 0 1 40 250 Tm (placar.) Tj ET
+0.83 0.87 0.9 rg 40 41 515 1 re f
+BT 0.45 0.5 0.55 rg /F1 8 Tf 1 0 0 1 40 25 Tm (Aulas-Sinerge  ·  Integração de Sistemas  ·  19/10/2026) Tj ET
+BT 0.45 0.5 0.55 rg /F1 8 Tf 1 0 0 1 514 25 Tm (4 / 4) Tj ET
 endstream
 endobj
 xref
-0 12
+0 14
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
-0000000128 00000 n 
-0000000225 00000 n 
-0000000327 00000 n 
-0000000373 00000 n 
-0000000509 00000 n 
-0000003412 00000 n 
-0000003548 00000 n 
-0000005964 00000 n 
-0000006102 00000 n 
+0000000135 00000 n 
+0000000232 00000 n 
+0000000334 00000 n 
+0000000429 00000 n 
+0000000575 00000 n 
+0000003651 00000 n 
+0000003797 00000 n 
+0000007727 00000 n 
+0000007875 00000 n 
+0000011002 00000 n 
+0000011150 00000 n 
 trailer
-<< /Size 12 /Root 1 0 R >>
+<< /Size 14 /Root 1 0 R >>
 startxref
-9063
+14245
 %%EOF
