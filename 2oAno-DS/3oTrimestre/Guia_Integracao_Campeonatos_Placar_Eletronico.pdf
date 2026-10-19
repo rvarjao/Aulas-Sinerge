@@ -1,0 +1,273 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Producer (Guia Escolar) >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 2852 >>
+stream
+BT
+/F2 16 Tf
+48 794 Td
+(INTEGRACAO: CAMPEONATOS E PLACAR ELETRONICO) Tj
+/F1 10 Tf
+1 0 0 1 48 770 Tm
+(2o Ano - Desenvolvimento de Sistemas | 3o trimestre | 19/10/2026) Tj
+1 0 0 1 48 753 Tm
+(Guia para os grupos de Gerenciamento de Campeonatos e Placar Eletronico.) Tj
+1 0 0 1 48 736 Tm
+(Repositorio-base: https://github.com/rvarjao/placar-eletronico-api) Tj
+1 0 0 1 48 710 Tm
+(1. OBJETIVO E ARQUITETURA) Tj
+1 0 0 1 48 693 Tm
+(Dois sistemas independentes trocam informacoes por API REST HTTP/JSON.) Tj
+1 0 0 1 48 676 Tm
+(Campeonatos cria partidas, solicita um placar e consulta o resultado por ID.) Tj
+1 0 0 1 48 659 Tm
+(Placar administra resultados, tempo, faltas, etapas e a interface visual.) Tj
+1 0 0 1 48 642 Tm
+(Cada grupo usa seu codigo, projeto PostgreSQL e credenciais do Supabase.) Tj
+1 0 0 1 48 625 Tm
+(Uma maquina da escola executa as APIs Flask em Docker na rede local.) Tj
+1 0 0 1 48 608 Tm
+(O servidor precisa de internet para acessar o Supabase e portas liberadas.) Tj
+1 0 0 1 48 591 Tm
+(Credenciais ficam no backend \(.env\), nunca no navegador ou no GitHub.) Tj
+1 0 0 1 48 565 Tm
+(2. REPOSITORIO BASE - SEM LOGICA IMPLEMENTADA) Tj
+1 0 0 1 48 548 Tm
+(https://github.com/rvarjao/placar-eletronico-api) Tj
+1 0 0 1 48 531 Tm
+(O projeto ja traz app/routes/placares.py, services/, models/, repositories/,) Tj
+1 0 0 1 48 514 Tm
+(Dockerfile, compose.yaml, .env.example, README e arquivos em docs/.) Tj
+1 0 0 1 48 497 Tm
+(As rotas estao declaradas e retornam 501 \(Not Implemented\).) Tj
+1 0 0 1 48 480 Tm
+(Os estudantes devem desenvolver validacoes, acesso ao banco e respostas.) Tj
+1 0 0 1 48 454 Tm
+(3. ENDPOINTS) Tj
+1 0 0 1 48 437 Tm
+(POST  /api/placares        cria placar \(HTTP 201, retorna ID\)) Tj
+1 0 0 1 48 420 Tm
+(GET   /api/placares/{id}   consulta estado \(HTTP 200 ou 404\)) Tj
+1 0 0 1 48 403 Tm
+(PATCH /api/placares/{id}   atualiza campos recebidos \(HTTP 200\)) Tj
+1 0 0 1 48 386 Tm
+(Base ilustrativa: http://192.168.1.100:5001/api) Tj
+1 0 0 1 48 369 Tm
+(Escrever os nomes de campos JSON em snake_case.) Tj
+1 0 0 1 48 343 Tm
+(4. CAMPOS DO PLACAR) Tj
+1 0 0 1 48 326 Tm
+(id: inteiro automatico gerado e persistido pela API.) Tj
+1 0 0 1 48 309 Tm
+(nome_equipe_a, nome_equipe_b: textos obrigatorios.) Tj
+1 0 0 1 48 292 Tm
+(modalidade: texto validado \(futebol, futsal, basquete, volei, handebol, outro\).) Tj
+1 0 0 1 48 275 Tm
+(status: texto validado \(nao_iniciado, em_andamento, pausado, finalizado\).) Tj
+1 0 0 1 48 258 Tm
+(tempo: inteiro em segundos; tipo de cronometro depende da modalidade.) Tj
+1 0 0 1 48 241 Tm
+(etapa: texto livre \(1o tempo, 2o tempo, 3o quarto, 4o set etc.\).) Tj
+1 0 0 1 48 224 Tm
+(pontos_equipe_a/b e faltas_equipe_a/b: inteiros nao negativos.) Tj
+1 0 0 1 48 207 Tm
+(detalhes: objeto JSON para dados especificos \(ex.: sets vencidos\).) Tj
+1 0 0 1 48 36 Tm
+(Desenvolvimento de Sistemas | Pagina 1) Tj
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 2365 >>
+stream
+BT
+/F2 16 Tf
+48 794 Td
+(ROTAS E CONTRATO JSON) Tj
+/F1 10 Tf
+1 0 0 1 48 770 Tm
+(5. CRIAR PLACAR - POST /api/placares) Tj
+1 0 0 1 48 753 Tm
+(Entrada minima recomendada:) Tj
+1 0 0 1 48 736 Tm
+({ "nome_equipe_a": "Brasil", "nome_equipe_b": "Argentina",) Tj
+1 0 0 1 48 719 Tm
+(  "modalidade": "futebol", "etapa": "1o tempo" }) Tj
+1 0 0 1 48 702 Tm
+(Status inicial = nao_iniciado; tempo, pontos e faltas = 0.) Tj
+1 0 0 1 48 685 Tm
+(Resposta esperada HTTP 201 Created:) Tj
+1 0 0 1 48 668 Tm
+({ "id": 15, "nome_equipe_a": "Brasil",) Tj
+1 0 0 1 48 651 Tm
+(  "nome_equipe_b": "Argentina", "modalidade": "futebol",) Tj
+1 0 0 1 48 634 Tm
+(  "status": "nao_iniciado", "tempo": 0, "etapa": "1o tempo",) Tj
+1 0 0 1 48 617 Tm
+(  "pontos_equipe_a": 0, "pontos_equipe_b": 0,) Tj
+1 0 0 1 48 600 Tm
+(  "faltas_equipe_a": 0, "faltas_equipe_b": 0, "detalhes": {} }) Tj
+1 0 0 1 48 574 Tm
+(6. CONSULTAR PLACAR - GET /api/placares/15) Tj
+1 0 0 1 48 557 Tm
+(Retorna o mesmo objeto, com valores atuais. Exemplo HTTP 200:) Tj
+1 0 0 1 48 540 Tm
+({ "id": 15, "nome_equipe_a": "Brasil",) Tj
+1 0 0 1 48 523 Tm
+(  "nome_equipe_b": "Argentina", "modalidade": "futebol",) Tj
+1 0 0 1 48 506 Tm
+(  "status": "em_andamento", "tempo": 2520, "etapa": "2o tempo",) Tj
+1 0 0 1 48 489 Tm
+(  "pontos_equipe_a": 2, "pontos_equipe_b": 1,) Tj
+1 0 0 1 48 472 Tm
+(  "faltas_equipe_a": 3, "faltas_equipe_b": 5, "detalhes": {} }) Tj
+1 0 0 1 48 455 Tm
+(ID inexistente => HTTP 404 com mensagem JSON de erro.) Tj
+1 0 0 1 48 429 Tm
+(7. ATUALIZAR PLACAR - PATCH /api/placares/15) Tj
+1 0 0 1 48 412 Tm
+(Operacao do sistema do placar; exige autorizacao e validacao.) Tj
+1 0 0 1 48 395 Tm
+(Enviar somente os campos alterados:) Tj
+1 0 0 1 48 378 Tm
+({ "pontos_equipe_a": 3, "tempo": 2700, "etapa": "2o tempo" }) Tj
+1 0 0 1 48 361 Tm
+(Responder HTTP 200 com o objeto completo ja atualizado.) Tj
+1 0 0 1 48 344 Tm
+(Nao permitir alterar o ID por PATCH. Validar pontuacoes e status.) Tj
+1 0 0 1 48 318 Tm
+(8. TRATAMENTO DE ERROS) Tj
+1 0 0 1 48 301 Tm
+(201: criado; 200: consulta/atualizacao; 400/422: JSON invalido.) Tj
+1 0 0 1 48 284 Tm
+(401/403: sem autorizacao; 404: placar inexistente.) Tj
+1 0 0 1 48 267 Tm
+(500: erro inesperado; 503: dependencia indisponivel.) Tj
+1 0 0 1 48 250 Tm
+(Erros devem ter JSON coerente. Nunca expor senhas ou detalhes do banco.) Tj
+1 0 0 1 48 36 Tm
+(Desenvolvimento de Sistemas | Pagina 2) Tj
+ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 2909 >>
+stream
+BT
+/F2 16 Tf
+48 794 Td
+(INTEGRACAO, INTERFACES E ENTREGAS) Tj
+/F1 10 Tf
+1 0 0 1 48 770 Tm
+(9. FLUXO DE INTEGRACAO - POLLING) Tj
+1 0 0 1 48 753 Tm
+(1\) Campeonatos cadastra a partida e executa POST /api/placares.) Tj
+1 0 0 1 48 736 Tm
+(2\) Salva o ID retornado como placar_id no proprio banco.) Tj
+1 0 0 1 48 719 Tm
+(3\) Consulta GET /api/placares/{id} aproximadamente a cada 5 segundos.) Tj
+1 0 0 1 48 702 Tm
+(4\) Mostra pontos, tempo, etapa, faltas e detalhes na sua interface.) Tj
+1 0 0 1 48 685 Tm
+(5\) Ao receber status finalizado, para o polling e registra resultado final.) Tj
+1 0 0 1 48 668 Tm
+(Em falha/timeout, mostrar aviso e tentar novamente, sem criar outro placar.) Tj
+1 0 0 1 48 651 Tm
+(Para fins didaticos, usar polling; webhook e WebSocket nao sao exigidos.) Tj
+1 0 0 1 48 625 Tm
+(10. INTERFACES VISUAIS POR MODALIDADE) Tj
+1 0 0 1 48 608 Tm
+(Primeiro criar um placar generico; depois reutilizar componentes e) Tj
+1 0 0 1 48 591 Tm
+(adaptar layouts por modalidade sem duplicar toda a aplicacao.) Tj
+1 0 0 1 48 574 Tm
+(Futebol/futsal: gols, 1o/2o tempo, cronometro crescente; faltas se couber.) Tj
+1 0 0 1 48 557 Tm
+(Basquete: pontos, quartos, cronometro regressivo e faltas.) Tj
+1 0 0 1 48 540 Tm
+(Volei: pontos do set atual, sets vencidos e etapa; relogio opcional.) Tj
+1 0 0 1 48 523 Tm
+(No volei, pontos_equipe_a/b representam pontos do set em andamento.) Tj
+1 0 0 1 48 506 Tm
+(Exemplo detalhes: { "sets_equipe_a": 2, "sets_equipe_b": 1 }) Tj
+1 0 0 1 48 489 Tm
+(O sistema de campeonatos deve interpretar esses dados corretamente.) Tj
+1 0 0 1 48 463 Tm
+(11. ETAPAS PROPOSTAS) Tj
+1 0 0 1 48 446 Tm
+(1. Fazer fork do projeto base e estudar o contrato JSON.) Tj
+1 0 0 1 48 429 Tm
+(2. Modelar tabelas, configurar Supabase e testar conexao pelo backend.) Tj
+1 0 0 1 48 412 Tm
+(3. Implementar POST, GET e PATCH, validacoes e tratamento de erros.) Tj
+1 0 0 1 48 395 Tm
+(4. Criar controles e tela de visualizacao do placar generico.) Tj
+1 0 0 1 48 378 Tm
+(5. Integrar os dois projetos pela URL da rede local.) Tj
+1 0 0 1 48 361 Tm
+(6. Especializar a interface para futebol, basquete e volei.) Tj
+1 0 0 1 48 344 Tm
+(7. Criar testes automatizados e demonstrar partida ate finalizacao.) Tj
+1 0 0 1 48 318 Tm
+(12. CRITERIOS DE ACEITACAO) Tj
+1 0 0 1 48 301 Tm
+(POST deve retornar ID persistente; GET refletir mudancas ou retornar 404.) Tj
+1 0 0 1 48 284 Tm
+(PATCH deve validar dados e impedir alteracoes nao autorizadas.) Tj
+1 0 0 1 48 267 Tm
+(Campeonatos armazena ID e acessa somente a API, nao o banco alheio.) Tj
+1 0 0 1 48 250 Tm
+(As interfaces devem respeitar a modalidade e exibir resultado correto.) Tj
+1 0 0 1 48 233 Tm
+(Testar indisponibilidade de rede/Supabase e documentar o comportamento.) Tj
+1 0 0 1 48 207 Tm
+(DOCUMENTACAO COMPLEMENTAR) Tj
+1 0 0 1 48 190 Tm
+(https://github.com/rvarjao/placar-eletronico-api/tree/main/docs) Tj
+1 0 0 1 48 36 Tm
+(Desenvolvimento de Sistemas | Pagina 3) Tj
+ET
+endstream
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000128 00000 n 
+0000000225 00000 n 
+0000000327 00000 n 
+0000000373 00000 n 
+0000000509 00000 n 
+0000003412 00000 n 
+0000003548 00000 n 
+0000005964 00000 n 
+0000006102 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+9063
+%%EOF
