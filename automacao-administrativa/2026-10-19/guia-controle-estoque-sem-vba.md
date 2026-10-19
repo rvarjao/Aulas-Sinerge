@@ -1,41 +1,69 @@
-# Aula rápida — Controle de estoque sem VBA
+# Atividade prática — Controle de estoque no Excel (sem VBA)
 
-**Tempo de atividade no Excel: até 40 minutos.**
+**Turma:** Automação Administrativa  
+**Data:** 19/10/2026  
+**Tempo previsto:** até 40 minutos
 
-## Objetivo
+## O que você vai aprender
 
-Montar um controle de estoque que calcula o saldo de cada produto a partir do registro de entradas e saídas.
+Nesta atividade, você vai usar o Excel para controlar o estoque de produtos. Ao final, sua planilha deverá calcular automaticamente o saldo com base nas **entradas** e **saídas**, além de indicar os produtos que precisam de reposição.
 
-## Roteiro
+Você não precisará utilizar VBA ou macros.
 
-### 1. Conhecer os dados — 3 min
+## Antes de começar
 
-Abra `controle-estoque-sem-vba.xlsx` e observe as abas **Produtos** e **Movimentacoes**. Toda alteração de estoque deve ser registrada em **Movimentacoes**.
+Abra o arquivo `controle-estoque-sem-vba.xlsx` no Excel e localize as duas abas:
 
-### 2. Calcular o estoque atual — 12 min
+- **Produtos:** contém o cadastro, o estoque mínimo, o estoque atual e a situação de cada produto.
+- **Movimentacoes:** registra a entrada ou a saída de cada produto.
 
-Na aba **Produtos**, em `D5`, escreva a fórmula abaixo e copie-a até `D10`:
+**Importante:** não altere o estoque atual manualmente. Ele será calculado a partir dos registros de movimentação.
+
+## Etapa 1 — Explore a planilha (3 minutos)
+
+1. Na aba **Produtos**, observe os códigos dos produtos e os valores de estoque mínimo.
+2. Na aba **Movimentacoes**, identifique as colunas **Código**, **Tipo** e **Quantidade**.
+3. Verifique como os códigos relacionam cada movimentação a um produto.
+
+## Etapa 2 — Calcule o estoque atual (12 minutos)
+
+1. Acesse a aba **Produtos**.
+2. Selecione a célula **D5**.
+3. Digite a fórmula:
 
 ```excel
 =SOMASES(Movimentacoes!$D$5:$D$30;Movimentacoes!$B$5:$B$30;A5;Movimentacoes!$C$5:$C$30;"Entrada")-SOMASES(Movimentacoes!$D$5:$D$30;Movimentacoes!$B$5:$B$30;A5;Movimentacoes!$C$5:$C$30;"Saída")
 ```
 
-Em seguida, em `E5`, escreva e copie até `E10`:
+4. Pressione **Enter**.
+5. Copie a fórmula de **D5 até D10**, usando a alça de preenchimento.
+
+**Entenda o cálculo:** a função `SOMASES` soma as quantidades do produto indicado em `A5` que são do tipo **Entrada**. Depois, subtrai as quantidades do mesmo produto registradas como **Saída**.
+
+Agora, faça a planilha informar se o estoque está adequado:
+
+6. Na célula **E5**, digite:
 
 ```excel
 =SE(D5<C5;"Abaixo do mínimo";"Estoque adequado")
 ```
 
-### 3. Destacar produtos com pouco estoque — 5 min
+7. Pressione **Enter** e copie a fórmula até **E10**.
 
-Selecione `E5:E10` e aplique **Formatação Condicional → Realçar Regras das Células → Texto que contém**:
+**Observe:** a função `SE` compara o estoque atual (`D5`) com o estoque mínimo (`C5`).
 
-- `Abaixo do mínimo`: preenchimento vermelho-claro;
-- `Estoque adequado`: preenchimento verde-claro.
+## Etapa 3 — Destaque os produtos que precisam de reposição (5 minutos)
 
-### 4. Registrar movimentações — 12 min
+1. Selecione o intervalo **E5:E10**, na aba **Produtos**.
+2. Acesse **Página Inicial → Formatação Condicional → Realçar Regras das Células → Texto que contém**.
+3. Crie uma regra para o texto **Abaixo do mínimo** com preenchimento vermelho-claro.
+4. Crie outra regra para o texto **Estoque adequado** com preenchimento verde-claro.
 
-Na aba **Movimentacoes**, registre as situações abaixo nas linhas vazias. Use apenas `Entrada` ou `Saída` na coluna Tipo.
+Confira se as situações estão destacadas com as cores corretas.
+
+## Etapa 4 — Registre novas movimentações (12 minutos)
+
+Acesse a aba **Movimentacoes** e preencha as próximas linhas vazias com os quatro registros abaixo.
 
 | Situação | Código | Tipo | Quantidade |
 | --- | ---: | --- | ---: |
@@ -44,16 +72,32 @@ Na aba **Movimentacoes**, registre as situações abaixo nas linhas vazias. Use 
 | Chegaram marca-textos | 105 | Entrada | 10 |
 | Foram entregues pastas | 106 | Saída | 9 |
 
-Volte à aba **Produtos** e confira os saldos e as situações.
+Atenção:
 
-### 5. Fechamento — 5 min
+- Use exatamente **Entrada** ou **Saída** na coluna **Tipo**.
+- Registre cada operação em uma linha diferente.
+- Não apague movimentações anteriores.
+- Preencha as outras colunas existentes, como data, conforme o modelo da planilha.
 
-Responda:
+Depois de registrar tudo, volte à aba **Produtos**. Verifique se os saldos e as situações mudaram automaticamente.
 
-1. Quais produtos estão abaixo do mínimo?
-2. Por que não devemos digitar diretamente o estoque atual?
-3. O que aconteceria com o saldo se uma saída fosse apagada da aba Movimentacoes?
+## Etapa 5 — Responda e confira seu trabalho (5 minutos)
 
-## Observação para o professor
+Responda às perguntas abaixo no caderno ou no local indicado pelo professor:
 
-Se o tempo estiver apertado, aplique somente a fórmula de estoque atual e deixe a coluna Situação como desafio ou demonstração final. Não é necessário criar tabelas, macros, gráficos ou filtros nesta aula.
+1. Quais produtos ficaram abaixo do estoque mínimo após as novas movimentações?
+2. Por que o estoque atual deve ser calculado pelas movimentações, em vez de digitado manualmente?
+3. O que aconteceria com o saldo de um produto se uma movimentação de **Saída** fosse apagada?
+
+### Checklist de conclusão
+
+- [ ] Preenchi a fórmula do estoque atual em **D5:D10**.
+- [ ] Preenchi a fórmula da situação em **E5:E10**.
+- [ ] Configurei as duas regras de formatação condicional.
+- [ ] Registrei as quatro movimentações propostas.
+- [ ] Conferi a atualização automática dos saldos.
+- [ ] Respondi às três perguntas.
+
+**Ao finalizar:** salve seu arquivo do Excel e siga as orientações do professor para apresentar ou entregar a atividade.
+
+> **Desafio extra (opcional):** pense em como a planilha poderia avisar que um produto está com estoque zerado, sem alterar manualmente os saldos.
