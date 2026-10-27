@@ -83,3 +83,8 @@ Entregue a planilha **.xlsm**, com a macro funcionando, e um breve registro dos 
 | Uso de `For` e `If` | 2 |
 | Gravação dos itens e cálculos | 2 |
 | Validações, limpeza e testes | 2 |
+
+## Versão no Google Sheets
+- Podemos visualizar esse mesmo documento na versão do Google Sheets. Acesse pelo link abaixo:
+  [Cardápio](https://docs.google.com/spreadsheets/d/1jAhigiklcQP9z9o3MzHIhsuBRd3lRq5o-533hr660ac/edit?usp=sharing)
+- Para visualizar o código vá em Extensões -> App Scripts
