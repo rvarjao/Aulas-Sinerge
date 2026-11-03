@@ -159,6 +159,6 @@ Depois de completar a pesquisa e a análise, realize estes testes:
 - Inclua os links e a data de consulta dos anúncios. Lembre-se de que os preços podem mudar.
 - Organize os dados para que outra pessoa compreenda a análise sem precisar de explicações orais.
 - Compartilhe o **link da planilha** com permissão de visualização, conforme orientação do professor.
-- A planilha deve ser entregue até dia **20/11/2026** única e exclusivamente pelo formulário disponível no link: (Atividade Avaliativa — Onde vou morar?)[https://docs.google.com/forms/d/e/1FAIpQLSftSegk-uiGK6PQfzcQAm2OSCC6VqOZfdiNkMO9aOQICzoiaQ/viewform?usp=publish-editor]
+- A planilha deve ser entregue até dia **20/11/2026** única e exclusivamente pelo formulário disponível no link: [Atividade Avaliativa — Onde vou morar?](https://docs.google.com/forms/d/e/1FAIpQLSftSegk-uiGK6PQfzcQAm2OSCC6VqOZfdiNkMO9aOQICzoiaQ/viewform?usp=publish-editor)
 
 **Objetivo final:** demonstrar que uma planilha pode funcionar como uma ferramenta para investigar dados, comparar alternativas, simular cenários e tomar decisões justificadas.
