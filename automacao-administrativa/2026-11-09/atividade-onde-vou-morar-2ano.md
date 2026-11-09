@@ -4,7 +4,7 @@
 **Ferramenta:** Google Sheets  
 **Tema:** Pesquisa imobiliária, planejamento financeiro e pensamento analítico  
 **Modalidade:** Individual ou em grupo, conforme orientação do professor  
-**Entrega:** arquivo Excel (`.xlsx`) pelo [formulário da atividade](https://docs.google.com/forms/d/e/1FAIpQLSftSegk-uiGK6PQfzcQAm2OSCC6VqOZfdiNkMO9aOQICzoiaQ/viewform?usp=publish-editor), utilizado também pelo 1º ano de Administração. **Prazo: 20/11/2026.**  
+**Entrega:** Link para a planilha do Google Sheets, com permissão de visualização  
 **Programação:** Não é permitido utilizar VBA ou Google Apps Script.
 
 ## 1. Situação-problema
@@ -151,13 +151,14 @@ Depois de completar a pesquisa e a análise, realize estes testes:
 
 ## 8. Regras e entrega
 
-- Use **Google Sheets ou Excel**; entregue obrigatoriamente um arquivo **`.xlsx`**, não imagens ou capturas de tela. Se usar Google Sheets, exporte em **Arquivo → Fazer download → Microsoft Excel (.xlsx)**.
+- Use **Google Sheets**; não entregue apenas imagens ou capturas de tela da planilha.
 - Utilize **pelo menos 10 anúncios reais** e **3 bairros diferentes**.
 - Compare obrigatoriamente **morar sozinho(a)** e **morar com amigos**.
 - Utilize **fórmulas nas células** para os cálculos, não apenas resultados digitados.
 - Não use **VBA, Google Apps Script** ou qualquer outro código de automação.
 - Inclua os links e a data de consulta dos anúncios. Lembre-se de que os preços podem mudar.
 - Organize os dados para que outra pessoa compreenda a análise sem precisar de explicações orais.
-- Envie o arquivo **`.xlsx`** até **20/11/2026**, exclusivamente pelo [formulário Atividade Avaliativa — Onde vou morar?](https://docs.google.com/forms/d/e/1FAIpQLSftSegk-uiGK6PQfzcQAm2OSCC6VqOZfdiNkMO9aOQICzoiaQ/viewform?usp=publish-editor), compartilhado com o 1º ano. Identifique corretamente a turma como **2º ano de Administração**.
+- Compartilhe o **link da planilha** com permissão de visualização, conforme orientação do professor.
+- A planilha deve ser entregue até dia **20/11/2026** única e exclusivamente pelo formulário disponível no link: [Atividade Avaliativa — Onde vou morar?](https://docs.google.com/forms/d/e/1FAIpQLSftSegk-uiGK6PQfzcQAm2OSCC6VqOZfdiNkMO9aOQICzoiaQ/viewform?usp=publish-editor)
 
 **Objetivo final:** demonstrar que uma planilha pode funcionar como uma ferramenta para investigar dados, comparar alternativas, simular cenários e tomar decisões justificadas.
