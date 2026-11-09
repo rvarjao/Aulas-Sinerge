@@ -4,7 +4,7 @@
 **Ferramenta:** Google Sheets  
 **Tema:** Pesquisa imobiliária, planejamento financeiro e pensamento analítico  
 **Modalidade:** Individual ou em grupo, conforme orientação do professor  
-**Entrega:** arquivo Excel (`.xlsx`) pelo mesmo formulário de envio utilizado pelo 1º ano de Administração  
+**Entrega:** arquivo Excel (`.xlsx`) pelo [formulário da atividade](https://docs.google.com/forms/d/e/1FAIpQLSftSegk-uiGK6PQfzcQAm2OSCC6VqOZfdiNkMO9aOQICzoiaQ/viewform?usp=publish-editor), utilizado também pelo 1º ano de Administração. **Prazo: 20/11/2026.**  
 **Programação:** Não é permitido utilizar VBA ou Google Apps Script.
 
 ## 1. Situação-problema
@@ -158,6 +158,6 @@ Depois de completar a pesquisa e a análise, realize estes testes:
 - Não use **VBA, Google Apps Script** ou qualquer outro código de automação.
 - Inclua os links e a data de consulta dos anúncios. Lembre-se de que os preços podem mudar.
 - Organize os dados para que outra pessoa compreenda a análise sem precisar de explicações orais.
-- Envie o arquivo **`.xlsx`** pelo **mesmo formulário de entrega do 1º ano de Administração** (link fornecido pelo professor). Identifique corretamente a turma como **2º ano de Administração**.
+- Envie o arquivo **`.xlsx`** até **20/11/2026**, exclusivamente pelo [formulário Atividade Avaliativa — Onde vou morar?](https://docs.google.com/forms/d/e/1FAIpQLSftSegk-uiGK6PQfzcQAm2OSCC6VqOZfdiNkMO9aOQICzoiaQ/viewform?usp=publish-editor), compartilhado com o 1º ano. Identifique corretamente a turma como **2º ano de Administração**.
 
 **Objetivo final:** demonstrar que uma planilha pode funcionar como uma ferramenta para investigar dados, comparar alternativas, simular cenários e tomar decisões justificadas.
