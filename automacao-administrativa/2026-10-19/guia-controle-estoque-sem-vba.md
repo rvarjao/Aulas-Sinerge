@@ -98,6 +98,13 @@ Responda às perguntas abaixo no caderno ou no local indicado pelo professor:
 - [ ] Conferi a atualização automática dos saldos.
 - [ ] Respondi às três perguntas.
 
-**Ao finalizar:** salve seu arquivo do Excel e siga as orientações do professor para apresentar ou entregar a atividade.
+**Ao finalizar:**
+
+A planilha deve ser enviada pelo formulário:
+
+[Atividade prática — Controle de estoque no Excel (sem VBA)](https://docs.google.com/forms/d/e/1FAIpQLScVWsmFa9CIOdULYqFvuWkgwdzZN0Yw-ZN55s4dp7nrO8bISA/viewform?usp=publish-editor)
+
 
 > **Desafio extra (opcional):** pense em como a planilha poderia avisar que um produto está com estoque zerado, sem alterar manualmente os saldos.
+
+
